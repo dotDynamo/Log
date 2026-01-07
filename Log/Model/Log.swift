@@ -18,9 +18,10 @@ class Log{
     var rating: Int?
     var recommendedBy: String?
     var Notes: String?
+    @Relationship var user: User
     @Relationship var tags: [Tag]
     
-    init(id: UUID = UUID(), title: String, releaseDate: Date, startDate: Date? = nil, finishDate: Date? = nil, rating: Int? = nil, recommendedBy: String? = nil, Notes: String? = nil, tags: [Tag]) {
+    init(id: UUID = UUID(), title: String, releaseDate: Date, startDate: Date? = nil, finishDate: Date? = nil, rating: Int? = nil, recommendedBy: String? = nil, Notes: String? = nil, user: User, tags: [Tag]) {
         self.id = id
         self.title = title
         self.releaseDate = releaseDate
@@ -29,6 +30,7 @@ class Log{
         self.rating = rating
         self.recommendedBy = recommendedBy
         self.Notes = Notes
+        self.user = user
         self.tags = tags
     }
 }
