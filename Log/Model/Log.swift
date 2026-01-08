@@ -22,14 +22,14 @@ class Log{
     var releaseDate: Date?
     var startDate: Date?
     var finishDate: Date?
-    var rating: Int?
+    var rating: Double?
     var recommendedBy: String?
     var notes: String?
     var status: Status
     @Relationship var user: User
     @Relationship var tags: [Tag]
     
-    init(id: UUID = UUID(), title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Int? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = []) {
+    init(id: UUID = UUID(), title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = []) {
         self.id = id
         self.title = title
         self.releaseDate = releaseDate
