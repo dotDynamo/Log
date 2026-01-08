@@ -51,11 +51,11 @@ class MusicLog: Log{
     var album: String?
     var isFullAlbum: Bool
     
-    init(title: String, user: User, artist: String, album: String? = nil, isFullAlbum: Bool) {
+    init(title: String, status: Status, user: User, artist: String, album: String? = nil, isFullAlbum: Bool) {
         self.artist = artist
         self.album = album
         self.isFullAlbum = isFullAlbum
-        super.init(title: title, user: user)
+        super.init(title: title, status: status, user: user)
     }
 }
 
@@ -65,10 +65,10 @@ class MovieLog: Log{
     var director: String
     var writer: String
     
-    init(title: String, user: User, director: String, writer: String) {
+    init(title: String, status: Status, user: User, director: String, writer: String) {
         self.director = director
         self.writer = writer
-        super.init(title: title, user: user)
+        super.init(title: title, status: status, user: user)
     }
 }
 
@@ -78,10 +78,10 @@ class SeriesLog: Log{
     var creator: String
     var studio: String?
     
-    init(title: String, user: User, creator: String, studio: String? = nil) {
+    init(title: String, status: Status, user: User, creator: String, studio: String? = nil) {
         self.creator = creator
         self.studio = studio
-        super.init(title: title, user: user)
+        super.init(title: title, status: status, user: user)
     }
 }
 
@@ -91,10 +91,10 @@ class BookLog: Log{
     var author: String
     var isbn: String
     
-    init(title: String, user: User, author: String, isbn: String) {
+    init(title: String, status: Status, user: User, author: String, isbn: String) {
         self.author = author
         self.isbn = isbn
-        super.init(title: title, user: user)
+        super.init(title: title, status: status, user: user)
     }
 }
 
@@ -107,13 +107,13 @@ class GameLog: Log{
     var totalAchievements: Int?
     var run: Run
     
-    init(title: String, user: User, creator: String? = nil, gameStudio: String, platform: String, totalAchievements: Int? = nil, run: Run) {
+    init(title: String, status: Status, user: User, creator: String? = nil, gameStudio: String, platform: String, totalAchievements: Int? = nil, run: Run) {
         self.creator = creator
         self.gameStudio = gameStudio
         self.platform = platform
         self.totalAchievements = totalAchievements
         self.run = run
-        super.init(title: title, user: user)
+        super.init(title: title, status: status, user: user)
     }
 }
 
