@@ -17,7 +17,7 @@ enum Status: String, Codable{
 
 @Model
 class Log{
-    @Attribute(.unique) var id: UUID
+    @Attribute(.unique) var id: UUID = UUID()
     var title: String
     var releaseDate: Date?
     var startDate: Date?
@@ -29,8 +29,7 @@ class Log{
     @Relationship var user: User
     @Relationship var tags: [Tag]
     
-    init(id: UUID = UUID(), title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = []) {
-        self.id = id
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = []) {
         self.title = title
         self.releaseDate = releaseDate
         self.startDate = startDate
@@ -51,11 +50,11 @@ class MusicLog: Log{
     var album: String?
     var isFullAlbum: Bool
     
-    init(title: String, status: Status, user: User, artist: String, album: String? = nil, isFullAlbum: Bool) {
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = [], artist: String, album: String? = nil, isFullAlbum: Bool) {
         self.artist = artist
         self.album = album
         self.isFullAlbum = isFullAlbum
-        super.init(title: title, status: status, user: user)
+        super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, status: status, user: user, tags: tags)
     }
 }
 
@@ -65,10 +64,10 @@ class MovieLog: Log{
     var director: String
     var writer: String
     
-    init(title: String, status: Status, user: User, director: String, writer: String) {
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = [], director: String, writer: String) {
         self.director = director
         self.writer = writer
-        super.init(title: title, status: status, user: user)
+        super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, status: status, user: user, tags: tags)
     }
 }
 
@@ -78,10 +77,10 @@ class SeriesLog: Log{
     var creator: String
     var studio: String?
     
-    init(title: String, status: Status, user: User, creator: String, studio: String? = nil) {
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = [], creator: String, studio: String? = nil) {
         self.creator = creator
         self.studio = studio
-        super.init(title: title, status: status, user: user)
+        super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, status: status, user: user, tags: tags)
     }
 }
 
@@ -91,10 +90,10 @@ class BookLog: Log{
     var author: String
     var isbn: String
     
-    init(title: String, status: Status, user: User, author: String, isbn: String) {
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = [], author: String, isbn: String) {
         self.author = author
         self.isbn = isbn
-        super.init(title: title, status: status, user: user)
+        super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, status: status, user: user, tags: tags)
     }
 }
 
@@ -107,13 +106,13 @@ class GameLog: Log{
     var totalAchievements: Int?
     var run: Run
     
-    init(title: String, status: Status, user: User, creator: String? = nil, gameStudio: String, platform: String, totalAchievements: Int? = nil, run: Run) {
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, tags: [Tag] = [], creator: String? = nil, gameStudio: String, platform: String, totalAchievements: Int? = nil, run: Run) {
         self.creator = creator
         self.gameStudio = gameStudio
         self.platform = platform
         self.totalAchievements = totalAchievements
         self.run = run
-        super.init(title: title, status: status, user: user)
+        super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, status: status, user: user, tags: tags)
     }
 }
 
