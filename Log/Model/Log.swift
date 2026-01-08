@@ -8,20 +8,28 @@
 import Foundation
 import SwiftData
 
+enum Status{
+    case completed
+    case inProgress
+    case dropped
+    case inQueue
+}
+
 @Model
 class Log{
     @Attribute(.unique) var id: UUID
     var title: String
-    var releaseDate: Date
+    var releaseDate: Date?
     var startDate: Date?
     var finishDate: Date?
     var rating: Int?
     var recommendedBy: String?
-    var Notes: String?
+    var notes: String?
+    var status: Status
     @Relationship var user: User
     @Relationship var tags: [Tag]
     
-    init(id: UUID = UUID(), title: String, releaseDate: Date, startDate: Date? = nil, finishDate: Date? = nil, rating: Int? = nil, recommendedBy: String? = nil, Notes: String? = nil, user: User, tags: [Tag]) {
+    init(id: UUID = UUID(), title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Int? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = .inQueue, user: User, tags: [Tag]) {
         self.id = id
         self.title = title
         self.releaseDate = releaseDate
@@ -29,7 +37,8 @@ class Log{
         self.finishDate = finishDate
         self.rating = rating
         self.recommendedBy = recommendedBy
-        self.Notes = Notes
+        self.notes = notes
+        self.status = status
         self.user = user
         self.tags = tags
     }
