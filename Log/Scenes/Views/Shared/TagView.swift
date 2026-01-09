@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct TagView: View {
+    let tags: [Tag]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            ForEach(tags){ tag in
+                Text(tag.name)
+                    .font(.caption2)
+            }
+        }
     }
 }
 
 #Preview {
-    TagView()
+    let tags: [Tag] = [Tag(name: "Fiction"), Tag(name: "Other")]
+    TagView(tags: tags)
 }

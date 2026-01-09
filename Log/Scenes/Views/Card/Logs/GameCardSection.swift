@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct GameCardSection: View {
+    let log: GameLog
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Text(log.gameStudio)
+            Text(log.platform)
+            if log.releaseDate != nil {
+                Text(log.releaseDate!.formatted(.dateTime.year()))
+                    .foregroundStyle(.gray)
+            }
+        }
     }
-}
-
-#Preview {
-    GameCardSection()
 }

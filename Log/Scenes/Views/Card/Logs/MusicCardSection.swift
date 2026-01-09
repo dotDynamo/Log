@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct MusicCardSection: View {
+    let log: MusicLog
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Text(log.artist)
+            Text(log.releaseType.rawValue)
+            if log.releaseDate != nil {
+                Text(log.releaseDate!.formatted(.dateTime.year()))
+                    .foregroundStyle(.gray)
+            }
+        }
     }
-}
-
-#Preview {
-    MusicCardSection()
 }

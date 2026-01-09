@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct CommonCardSection: View {
+    let log: Log
+    @State var statusText: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading){
+            Text(statusText)
+                .font(.caption)
+            Text(log.title)
+                .font(.title2)
+        }
+        .onAppear(){
+            statusText = LogUtils.statusToText(log: log)
+        }
     }
-}
 
-#Preview {
-    CommonCardSection()
 }

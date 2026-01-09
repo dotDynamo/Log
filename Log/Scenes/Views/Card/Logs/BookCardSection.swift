@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct BookCardSection: View {
+    let log: BookLog
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Text(log.author)
+            if log.releaseDate != nil {
+                Text(log.releaseDate!.formatted(.dateTime.year()))
+                    .foregroundStyle(.gray)
+            }
+        }
     }
-}
-
-#Preview {
-    BookCardSection()
 }
