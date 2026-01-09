@@ -14,8 +14,7 @@ struct MusicCardSection: View {
             Text(log.artist)
             Text(log.releaseType.rawValue)
             if log.releaseDate != nil {
-                Text(log.releaseDate!.formatted(.dateTime.year()))
-                    .foregroundStyle(.gray)
+                Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
         }
     }

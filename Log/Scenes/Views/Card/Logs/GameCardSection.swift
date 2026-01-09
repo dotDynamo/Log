@@ -14,8 +14,7 @@ struct GameCardSection: View {
             Text(log.gameStudio)
             Text(log.platform)
             if log.releaseDate != nil {
-                Text(log.releaseDate!.formatted(.dateTime.year()))
-                    .foregroundStyle(.gray)
+                Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
         }
     }

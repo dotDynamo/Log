@@ -20,8 +20,7 @@ struct SeriesCardSection: View {
                 Text(String(log.seasons.count)+" seasons")
             }
             if log.releaseDate != nil {
-                Text(log.releaseDate!.formatted(.dateTime.year()))
-                    .foregroundStyle(.gray)
+                Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
         }
     }

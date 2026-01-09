@@ -21,5 +21,4 @@ struct CommonCardSection: View {
             statusText = LogUtils.statusToText(log: log)
         }
     }
-
 }
