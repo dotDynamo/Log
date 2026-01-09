@@ -13,8 +13,7 @@ struct MovieCardSection: View {
         HStack{
             Text(log.director)
             if log.releaseDate != nil {
-                Text(log.releaseDate!.formatted(.dateTime.year()))
-                    .foregroundStyle(.gray)
+                Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
         }
     }

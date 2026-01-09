@@ -9,11 +9,19 @@ import Foundation
 
 struct LogUtils{
     
-    static func ratingToText(rating: Double?) -> String{
-        if rating == 10{
-            return "10/10"
+    static func ratingToText(rating: Double?, style: Style) -> String{
+        switch(style){
+        case .round:
+            if rating == 10{
+                return "10"
+            }
+            return "\(rating, default: "-")"
+        case .capsule:
+            if rating == 10{
+                return "10/10"
+            }
+            return "\(rating, default: "- ")/10"
         }
-        return "\(rating, default: "- ")/10"
     }
     
     static func statusToText(log: Log) -> String{
@@ -47,5 +55,12 @@ struct LogUtils{
                 return "Backlog"
             }
         }
+    }
+    
+    static func getFromDate(_ date: Date?, get dateSection: Date.FormatStyle) -> String{
+        if date != nil {
+            return date!.formatted(dateSection)
+        }
+        return ""
     }
 }
