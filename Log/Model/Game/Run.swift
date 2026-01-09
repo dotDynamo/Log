@@ -15,12 +15,14 @@ class Run{
     var mode: String
     var achievements: Int?
     var date: Date
+    @Relationship var game: GameLog
     
-    init(id: UUID = UUID(), completedTime: Int? = nil, mode: String, achievements: Int? = nil, date: Date) {
+    init(id: UUID = UUID(), completedTime: Int? = nil, mode: String, achievements: Int? = nil, date: Date, game: GameLog) {
         self.id = id
         self.completedTime = completedTime
         self.mode = mode
         self.achievements = achievements
         self.date = date
+        self.game = game
     }
 }

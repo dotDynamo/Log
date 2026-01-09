@@ -12,11 +12,10 @@ import SwiftData
 class Tag{
     @Attribute(.unique) var id: UUID
     var name: String
-    @Relationship var logs: [Log]
+    @Relationship var logs: [Log] = []
     
-    init(id: UUID = UUID(), name: String, logs: [Log]) {
+    init(id: UUID = UUID(), name: String) {
         self.id = id
         self.name = name
-        self.logs = logs
     }
 }
