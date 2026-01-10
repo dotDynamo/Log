@@ -57,10 +57,23 @@ struct LogUtils{
         }
     }
     
-    static func getFromDate(_ date: Date?, get dateSection: Date.FormatStyle) -> String{
+    static func getFromDate(_ date: Date?, get dateSection: Date.FormatStyle = .dateTime) -> String{
         if date != nil {
             return date!.formatted(dateSection)
         }
         return ""
+    }
+    
+    static func compareDate(from startDate: Date, to endDate: Date, component: Calendar.Component = .day) -> Int?{
+        switch(component){
+        case .day:
+            return Calendar.current.dateComponents([.day], from: startDate, to: endDate).day
+        case .month:
+            return Calendar.current.dateComponents([.month], from: startDate, to: endDate).month
+        case .year:
+            return Calendar.current.dateComponents([.year], from: startDate, to: endDate).year
+        default:
+            return nil
+        }
     }
 }
