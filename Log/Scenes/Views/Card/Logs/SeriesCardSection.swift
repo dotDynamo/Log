@@ -14,13 +14,13 @@ struct SeriesCardSection: View {
             if log.studio != nil {
                 Text(log.studio!)
             }
-            if log.seasons.count == 1{
-                Text(String(log.seasons.count)+" season")
-            } else {
-                Text(String(log.seasons.count)+" seasons")
-            }
             if log.releaseDate != nil {
                 Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
+            }
+            if log.seasons.count == 1{
+                Text(String(log.seasons.count)+" season").font(.caption)
+            } else {
+                Text(String(log.seasons.count)+" seasons").font(.caption)
             }
         }
     }
