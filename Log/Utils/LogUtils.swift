@@ -76,4 +76,11 @@ struct LogUtils{
             return nil
         }
     }
+    
+    static func secondsToTime(_ seconds: Int) -> String {
+        let hours: Int = seconds/3600
+        let minutes: Int = (seconds - (hours * 3600))/60
+        let seconds: Int = seconds - (minutes * 60) - (hours * 3600)
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
 }

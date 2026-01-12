@@ -20,9 +20,15 @@ struct DatePeriodView: View {
     init(startDate: Date?, finishDate: Date?) {
         self.startDate = startDate
         self.finishDate = finishDate
-        sameYear = String(startDate!.formatted(.dateTime.year())) == String(finishDate!.formatted(.dateTime.year()))
-        sameMonth = String(startDate!.formatted(.dateTime.month())) == String(finishDate!.formatted(.dateTime.month()))
-        sameDay = String(startDate!.formatted(.dateTime.day())) == String(finishDate!.formatted(.dateTime.day()))
+        if startDate != nil && finishDate != nil{
+            sameYear = String(startDate!.formatted(.dateTime.year())) == String(finishDate!.formatted(.dateTime.year()))
+            sameMonth = String(startDate!.formatted(.dateTime.month())) == String(finishDate!.formatted(.dateTime.month()))
+            sameDay = String(startDate!.formatted(.dateTime.day())) == String(finishDate!.formatted(.dateTime.day()))
+        } else {
+            sameYear = false
+            sameMonth = false
+            sameDay = false
+        }
     }
     
     var body: some View {
@@ -93,6 +99,9 @@ struct DatePeriodView: View {
         .environment(\.locale, .init(identifier: "es_MX"))
 
     DatePeriodView(startDate: startDate3, finishDate: endDate3)
+        .environment(\.locale, .init(identifier: "es_MX"))
+    
+    DatePeriodView(startDate: nil, finishDate: nil)
         .environment(\.locale, .init(identifier: "es_MX"))
     
 }
