@@ -113,7 +113,9 @@ class GameLog: Log{
     var gameStudio: String
     var platform: String
     var totalAchievements: Int?
-    var runs: [Run] = []
+    @Relationship(deleteRule: .cascade)var runs: [Run] = []
+    @Relationship(deleteRule: .cascade)var achievements: [Achievement] = []
+    
     
     init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, creator: String? = nil, gameStudio: String, platform: String, totalAchievements: Int? = nil) {
         self.creator = creator
