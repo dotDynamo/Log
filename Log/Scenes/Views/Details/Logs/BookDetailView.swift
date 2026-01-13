@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BookDetailView: View {
+    let log: BookLog
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(log.author)
+        if log.isbn != nil{
+            Text("ISBN: \(log.isbn!)")
+        }
     }
-}
-
-#Preview {
-    BookDetailView()
 }
