@@ -54,6 +54,7 @@ class MusicLog: Log{
     var artist: String
     var album: String?
     var releaseType: ReleaseType
+    @Relationship(deleteRule: .cascade) var trackList: [Song] = []
     
     init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, artist: String, album: String? = nil, releaseType: ReleaseType = .single) {
         self.artist = artist
@@ -97,9 +98,9 @@ class SeriesLog: Log{
 @Model
 class BookLog: Log{
     var author: String
-    var isbn: String
+    var isbn: String?
     
-    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, author: String, isbn: String) {
+    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, author: String, isbn: String? = nil) {
         self.author = author
         self.isbn = isbn
         super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, status: status, user: user)
