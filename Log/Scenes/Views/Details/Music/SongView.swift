@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct SongView: View {
+    var song: Song
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Text(song.name)
+            Spacer()
+            Text(LogUtils.secondsToMinSec(song.duration))
+            Label("", systemImage: song.isSaved ? "star.filled" : "star")
+        }
     }
 }
 
 #Preview {
-    SongView()
+    let log: MusicLog = MusicLog(title: "Fower Boy", user: User(username: "", name: "", paternalSurname: ""), artist: "Tyler, The Creator")
+    SongView(song: Song(name: "See You Again (feat. Kali Uchis)", duration: 179, album: log))
 }
