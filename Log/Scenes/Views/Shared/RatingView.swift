@@ -13,7 +13,7 @@ enum Size {
     case large
 }
 
-enum Style {
+enum RatingStyle {
     case capsule
     case round
 }
@@ -21,7 +21,7 @@ enum Style {
 struct RatingView: View {
     let rating: Double?
     var size: Size = .small
-    var style: Style = .capsule
+    var style: RatingStyle = .capsule
     
     @State var ratingText: String = ""
     @State var ratingColor: Color = .gray

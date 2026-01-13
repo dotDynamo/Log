@@ -16,11 +16,12 @@ struct LogDetailView: View {
                     if log.releaseDate != nil {
                         Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year()))
                     }
-                    Text(log.title).font(.largeTitle)
+                    Text(log.title).font(.title).bold()
                 }
                 Spacer()
                 RatingView(rating: log.rating, size: .large, style: .round)
             }
+            Divider()
             switch log{
             case is MusicLog:
                 MusicDetailView(log: log as! MusicLog)
@@ -35,22 +36,20 @@ struct LogDetailView: View {
             default:
                 Text("Some error ocurred")
             }
-            Spacer()
-            if log.releaseDate != nil {
-                HStack{
-                    Text("Release date:")
-                    Text(log.releaseDate!, format: .dateTime.year().month().day())
-                }
-            }
             DatePeriodView(startDate: log.startDate, finishDate: log.finishDate)
             if log.recommendedBy != nil {
-                Text("Recommended by \(log.recommendedBy!)")
+                Divider()
+                Text("Recommended by:").font(.headline).foregroundStyle(.gray)
+                Text(log.recommendedBy!)
             }
             if log.notes != nil {
+                Divider()
                 Text("Notes:").font(.headline).foregroundStyle(.gray)
                 Text(log.notes!)
             }
+            Divider()
             TagView(tags: log.tags)
+            Spacer()
         }
         .padding()
         .navigationTitle("Log")
@@ -59,7 +58,6 @@ struct LogDetailView: View {
                 Label("Edit", systemImage: "square.and.pencil").labelStyle(.iconOnly)
             }
         }
-        .onAppear(){}
     }
     
     func stub(){

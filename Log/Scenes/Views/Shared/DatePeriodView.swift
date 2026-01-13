@@ -33,14 +33,15 @@ struct DatePeriodView: View {
     
     var body: some View {
         if startDate != nil && finishDate != nil {
+            Divider()
             VStack(alignment: .leading){
                 if sameYear {
                     if sameMonth {
                         if sameDay {
-                            Text("Same day")
+                            Text("Same day").font(.headline).foregroundStyle(.gray)
                             Text(startDate!, format: .dateTime.year().month().day())
                         } else {
-                            Text("Start\tFinish")
+                            Text("Start\tFinish").font(.headline).foregroundStyle(.gray)
                             HStack{
                                 Text(startDate!, format: .dateTime.day())
                                 Text("-")
@@ -48,7 +49,7 @@ struct DatePeriodView: View {
                             }
                         }
                     } else {
-                        Text("Start\t\tFinish")
+                        Text("Start\t\tFinish").font(.headline).foregroundStyle(.gray)
                         HStack{
                             Text(startDate!, format: .dateTime.month().day())
                             Text("-")
@@ -56,7 +57,7 @@ struct DatePeriodView: View {
                         }
                     }
                 } else {
-                    Text("Start\t\t\tFinish")
+                    Text("Start\t\t\tFinish").font(.headline).foregroundStyle(.gray)
                     HStack{
                         Text(startDate!, format: .dateTime.year().month().day())
                         Text("-")
