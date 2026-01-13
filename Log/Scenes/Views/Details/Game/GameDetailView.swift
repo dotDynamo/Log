@@ -10,16 +10,20 @@ import SwiftUI
 struct GameDetailView: View {
     let log: GameLog
     var body: some View {
-        Text(log.gameStudio)
+        Text(log.gameStudio).bold()
         if log.creator != nil{
             Text(log.creator!)
         }
         Text(log.platform)
+        if log.releaseDate != nil {
+            Divider()
+            Text("Release date:").font(.headline).foregroundStyle(.gray)
+            Text(log.releaseDate!, format: .dateTime.year().month().day())
+        }
         if log.totalAchievements != nil {
+            Divider()
             AchievementView(achievementCount: log.totalAchievements!, achievements: log.achievements)
         }
-        
-        Text("Runs")
         RunView(runs: log.runs)
     }
 }

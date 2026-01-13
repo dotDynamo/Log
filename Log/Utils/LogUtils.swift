@@ -9,7 +9,7 @@ import Foundation
 
 struct LogUtils{
     
-    static func ratingToText(rating: Double?, style: Style) -> String{
+    static func ratingToText(rating: Double?, style: RatingStyle) -> String{
         switch(style){
         case .round:
             if rating == 10{
@@ -77,10 +77,16 @@ struct LogUtils{
         }
     }
     
-    static func secondsToTime(_ seconds: Int) -> String {
+    static func secondsToHMS(_ seconds: Int) -> String {
         let hours: Int = seconds/3600
         let minutes: Int = (seconds - (hours * 3600))/60
         let seconds: Int = seconds - (minutes * 60) - (hours * 3600)
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    static func secondsToMinSec(_ seconds: Int) -> String {
+        let minutes: Int = seconds/60
+        let seconds: Int = seconds - (minutes * 60)
+        return String(format: "%d:%02d", minutes, seconds)
     }
 }
