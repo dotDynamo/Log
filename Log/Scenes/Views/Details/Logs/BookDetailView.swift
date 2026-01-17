@@ -13,7 +13,8 @@ struct BookDetailView: View {
         Text("Author").font(.headline).foregroundStyle(.gray)
         Text(log.author)
         if log.isbn != nil{
-            Text("ISBN: \(log.isbn!)")
+            Text("ISBN").font(.headline).foregroundStyle(.gray)
+            Text(log.isbn!)
         }
     }
 }
