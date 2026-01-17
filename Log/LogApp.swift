@@ -14,16 +14,6 @@ struct LogApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [
-            Log.self,
-            MusicLog.self,
-            MovieLog.self,
-            SeriesLog.self,
-            BookLog.self,
-            GameLog.self,
-            Run.self,
-            Tag.self,
-            User.self
-        ])
+        .modelContainer(for: Log.self)
     }
 }
