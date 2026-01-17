@@ -13,7 +13,7 @@ struct ContentView: View {
     var user = User(username: "User", name: "User", paternalSurname: "User")
     
     var body: some View {
-       NavigationBar()
+        NavigationBar()
     }
 }
 
