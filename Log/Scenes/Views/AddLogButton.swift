@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct AddLogButton: View {
+    var action: () -> Void
+    var plusColor: Color = .accentColor
+    var buttonColor: Color = .clear
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Spacer()
+            HStack{
+                Spacer()
+                Button(action: action){
+                    Image(systemName: "plus.circle.fill")
+                        .symbolRenderingMode(.palette)
+                        .font(.system(size: 56))
+                        .foregroundStyle(plusColor, buttonColor)
+                        .glassEffect()
+                        
+                }
+                .padding()
+            }
+        }
+        
     }
+    
 }
 
 #Preview {
-    AddLogButton()
+    AddLogButton(action: { print("Button pressed") })
 }
