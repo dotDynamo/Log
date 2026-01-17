@@ -10,12 +10,14 @@ import SwiftData
 
 @Model
 class Episode{
+    @Attribute(.unique) var id: UUID
     var name: String
     var rating: Double?
     var watched: Bool
     @Relationship var season: Season
     
-    init(name: String, rating: Double? = nil, watched: Bool = false, season: Season) {
+    init(id: UUID = UUID(), name: String, rating: Double? = nil, watched: Bool = false, season: Season) {
+        self.id = id
         self.name = name
         self.rating = rating
         self.watched = watched

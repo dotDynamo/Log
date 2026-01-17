@@ -10,12 +10,14 @@ import SwiftData
 
 @Model
 class Song{
+    @Attribute(.unique) var id: UUID
     var name: String
     var duration: Int
     var isSaved: Bool = false
     @Relationship var album: MusicLog
     
-    init(name: String, duration: Int, album: MusicLog) {
+    init(id: UUID = UUID(), name: String, duration: Int, album: MusicLog) {
+        self.id = id
         self.name = name
         self.album = album
         self.duration = duration

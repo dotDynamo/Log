@@ -10,12 +10,14 @@ import SwiftData
 
 @Model
 class Season{
+    @Attribute(.unique) var id : UUID
     var number: Int
     var name: String?
     var rating: Double?
     @Relationship(deleteRule: .cascade) var episodes: [Episode] = []
     
-    init(number: Int, name: String? = nil, rating: Double? = nil) {
+    init(id: UUID = UUID(), number: Int, name: String? = nil, rating: Double? = nil) {
+        self.id = id
         self.number = number
         self.name = name
         self.rating = rating
