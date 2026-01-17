@@ -19,13 +19,13 @@ struct NavigationBar: View {
     var body: some View {
         TabView {
             Tab("Home", systemImage: "house.fill"){
-                Text("Homeview goes here")
+                HomeScreen()
             }
             Tab("Library", systemImage: "books.vertical"){
-                Text("Library goes here")
+                LibraryScreen()
             }
             Tab("Search", systemImage: "magnifyingglass"){
-                Text("SearchView goes here")
+                SearchScreen()
             }
         }
     }
