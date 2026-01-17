@@ -10,28 +10,28 @@ import SwiftUI
 struct CardView: View {
     let log: Log
     var body: some View {
-        VStack(alignment: .leading, spacing: 0){
-            CommonCardSection(log: log)
-            switch log{
-            case is MusicLog:
-                MusicCardSection(log: log as! MusicLog)
-            case is MovieLog:
-                MovieCardSection(log: log as! MovieLog)
-            case is SeriesLog:
-                SeriesCardSection(log: log as! SeriesLog)
-            case is BookLog:
-                BookCardSection(log: log as! BookLog)
-            case is GameLog:
-                GameCardSection(log: log as! GameLog)
-            default:
-                Text("Some error ocurred")
+        HStack{
+            VStack(alignment: .leading, spacing: 0){
+                CommonCardSection(log: log)
+                switch log{
+                case is MusicLog:
+                    MusicCardSection(log: log as! MusicLog)
+                case is MovieLog:
+                    MovieCardSection(log: log as! MovieLog)
+                case is SeriesLog:
+                    SeriesCardSection(log: log as! SeriesLog)
+                case is BookLog:
+                    BookCardSection(log: log as! BookLog)
+                case is GameLog:
+                    GameCardSection(log: log as! GameLog)
+                default:
+                    Text("Some error ocurred")
+                }
             }
-            HStack{
-                TagView(tags: log.tags)
-                Spacer()
-                RatingView(rating: log.rating)
-            }
+            Spacer()
+            RatingView(rating: log.rating)
         }
+        TagView(tags: log.tags)
     }
 }
 
