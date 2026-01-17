@@ -89,4 +89,13 @@ struct LogUtils{
         let seconds: Int = seconds - (minutes * 60)
         return String(format: "%d:%02d", minutes, seconds)
     }
+    
+    static func getSeriesRating(_ log: SeriesLog) -> Double?{
+        var totalRating = 0.0
+        for season in log.seasons{
+            if season.rating != nil{ totalRating += season.rating!}
+        }
+        if totalRating == 0.0{ return nil}
+        return totalRating/Double(log.seasons.count)
+    }
 }
