@@ -11,6 +11,7 @@ struct UserView: View {
     let user: User
     var showUsername: Bool = true
     var size: Size = .medium
+    var action: () -> Void = {print("test")}
     
     @State var scale: CGFloat = 1.5
     
@@ -32,7 +33,7 @@ struct UserView: View {
             }
         }
         .onAppear(){ setSize()}
-        
+        .onTapGesture { action() }
     }
     
     func setSize(){
