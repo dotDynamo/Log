@@ -23,7 +23,6 @@ struct AddLogButton: View {
                         .font(.system(size: 56))
                         .foregroundStyle(plusColor, buttonColor)
                         .glassEffect()
-                        
                 }
                 .padding()
             }

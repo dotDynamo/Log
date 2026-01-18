@@ -20,9 +20,22 @@ struct HomeScreen: View {
             .toolbar{
                 
             }
+            .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
                 AddLogSheet()
             }
+            .navigationTitle("Home")
         }
+        .overlay(
+            VStack {
+                HStack {
+                    Spacer()
+                    if let currentUser = userSession.currentUser {
+                        UserView(user: currentUser, showUsername: false, size: .small).padding(.trailing)
+                    }
+                }
+                Spacer()
+            }
+        )
     }
 }

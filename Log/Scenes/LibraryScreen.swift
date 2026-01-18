@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct LibraryScreen: View {
+    @EnvironmentObject var userSession: UserSession
+    @State var newLogSheetVisibility: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            VStack{
+                Text("This is the library")
+                AddLogButton(action: {newLogSheetVisibility.toggle()})
+            }
+            .toolbarTitleDisplayMode(.inlineLarge)
+            .sheet(isPresented: $newLogSheetVisibility){
+                AddLogSheet()
+            }
+            .navigationTitle("Library")
+        }
+        .overlay(
+            VStack {
+                HStack {
+                    Spacer()
+                    if let currentUser = userSession.currentUser {
+                        UserView(user: currentUser, showUsername: false, size: .small).padding(.trailing)
+                    }
+                }
+                Spacer()
+            }
+        )
     }
 }
 
