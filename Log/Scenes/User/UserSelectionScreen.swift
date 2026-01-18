@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct UserSelectionScreen: View {
+    @Query(sort: \User.name) private var users: [User]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ForEach(users){ user in
+            UserView(user: user)
+        }
     }
-}
-
-#Preview {
-    UserSelectionScreen()
 }

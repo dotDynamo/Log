@@ -1,36 +1,38 @@
 //
-//  NavigationBar.swift
+//  NavigationBarScreen.swift
 //  Log
 //
 //  Created by Diego Herrera on 2026/01/16.
 //
 
 import SwiftUI
+import SwiftData
 
-enum Category{
-    case book
-    case game
-    case series
-    case movie
-    case music
-}
-
-struct NavigationBar: View {
+struct NavigationBarScreen: View {
+    @EnvironmentObject var userSession: UserSession
+    let logService: LogService
+    let userService: UserService
+    
     var body: some View {
-        TabView {
-            Tab("Home", systemImage: "house.fill"){
-                HomeScreen()
+        VStack{
+            HStack{
+                Spacer()
+                Button(action: {print("profile pressed")}){
+                    UserView(user: userSession.currentUser!, showUsername: false, size: .small)
+                        .padding()
+                }
             }
-            Tab("Library", systemImage: "books.vertical"){
-                LibraryScreen()
-            }
-            Tab("Search", systemImage: "magnifyingglass"){
-                SearchScreen()
+            TabView {
+                Tab("Home", systemImage: "house.fill"){
+                    HomeScreen()
+                }
+                Tab("Library", systemImage: "books.vertical"){
+                    LibraryScreen()
+                }
+                Tab("Search", systemImage: "magnifyingglass"){
+                    SearchScreen()
+                }
             }
         }
     }
-}
-
-#Preview {
-    NavigationBar()
 }
