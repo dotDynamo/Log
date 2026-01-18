@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @EnvironmentObject var userSession: UserSession
+    @State var newLogSheetVisibility: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            VStack{
+                Text(userSession.currentUser != nil ? "Welcome \(userSession.currentUser!.name)" : "No user")
+                AddLogButton(action: {newLogSheetVisibility.toggle()})
+            }
+            .toolbar{
+                
+            }
+            .sheet(isPresented: $newLogSheetVisibility){
+                AddLogSheet()
+            }
+        }
     }
-}
-
-#Preview {
-    HomeScreen()
 }

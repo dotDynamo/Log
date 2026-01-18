@@ -10,9 +10,13 @@ import SwiftUI
 
 @main
 struct LogApp: App {
+    
+    @StateObject private var userSession = UserSession()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(userSession)
         }
         .modelContainer(for: Log.self)
     }
