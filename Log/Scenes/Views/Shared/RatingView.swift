@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum Size {
-    case small
-    case medium
-    case large
-}
-
 enum RatingStyle {
     case capsule
     case round
