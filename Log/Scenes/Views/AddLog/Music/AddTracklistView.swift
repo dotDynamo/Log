@@ -11,7 +11,7 @@ struct AddTracklistView: View {
     @Binding var songs: [Song]
     @State var songDuration: Int = 0
     var body: some View {
-        Section(header: Text("Tracks")) {
+        Section("Tracks") {
             ForEach($songs) { $song in
                 HStack {
                     TextField("Song Title", text: $song.name)
@@ -36,5 +36,7 @@ struct AddTracklistView: View {
 #Preview {
     @Previewable @State var songs = [Song(name: "Párteme la Cara", duration: 168), Song(name: "Demasiadas mujeres", duration: 154)]
     @Previewable @State var songs2:[Song] = [Song(name:"", duration: 0)]
-    AddTracklistView(songs: $songs2)
+    List{
+        AddTracklistView(songs: $songs2)
+    }
 }

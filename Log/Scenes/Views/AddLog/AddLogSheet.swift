@@ -34,6 +34,9 @@ struct AddLogSheet: View {
     @State var writer: String = ""
     @State var runningTime: Int = 0
     
+    @State var creator: String = ""
+    @State var studio: String = ""
+    
     @State var artist: String = ""
     @State var album: String = ""
     @State var releaseType: ReleaseType = .single
@@ -42,7 +45,7 @@ struct AddLogSheet: View {
     var body: some View {
         NavigationStack{
             List{
-                Section(header: Text("Category").foregroundStyle(.gray).bold()) {
+                Section("Category") {
                     Picker("Category", selection: $category) {
                         Image(systemName: "film.fill").tag(LogCategory.movie)
                         Image(systemName: "tv.fill").tag(LogCategory.series)
@@ -53,14 +56,14 @@ struct AddLogSheet: View {
                     .pickerStyle(.segmented)
                 }
                 
-                Section(header: Text("General info").foregroundStyle(.gray).bold()){
+                Section("General info"){
                     TextField("Title", text: $title)
                     
                     switch(category){
                     case .movie:
                         AddMovieSection(director: $director, writer: $writer, runningTime: $runningTime)
                     case .series:
-                        AddSeriesSection()
+                        AddSeriesSection(creator: $creator, studio: $studio)
                     case .music:
                         AddMusicSection(artist: $artist, album: $album, releaseType: $releaseType)
                     case .book:
@@ -75,7 +78,7 @@ struct AddLogSheet: View {
                     AddTracklistView(songs: $songs)
                 }
 
-                Section(header: Text("Status").foregroundStyle(.gray).bold()){
+                Section("Status"){
                     Picker("Status", selection: $status){
                         Text(LogUtils.addStatusToText(status: .inQueue, category: category)).tag(Status.inQueue)
                         Text(LogUtils.addStatusToText(status: .inProgress, category: category)).tag(Status.inProgress)
@@ -84,7 +87,7 @@ struct AddLogSheet: View {
                     }.pickerStyle(.segmented)
                 }
 
-                Section(header: Text("Extra info").foregroundStyle(.gray).bold()){
+                Section("Extra info"){
                     if status == .completed{
                         DatePicker("Start date",
                                    selection: $startDate,
