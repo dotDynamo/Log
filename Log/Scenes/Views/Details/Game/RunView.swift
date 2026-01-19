@@ -24,7 +24,7 @@ struct RunView: View {
                         Text(run.date, format: .dateTime.year().month().day())
                         Spacer()
                         if run.completedTime != nil {
-                            Text(LogUtils.secondsToHMS(run.completedTime!))
+                            Text(TimeUtils.secondsToHMS(run.completedTime!))
                         }
                     }.padding()
                     Divider()

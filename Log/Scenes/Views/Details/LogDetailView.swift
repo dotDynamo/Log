@@ -14,7 +14,7 @@ struct LogDetailView: View {
             HStack{
                 VStack(alignment: .leading){
                     if log.releaseDate != nil {
-                        Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year()))
+                        Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year()))
                     }
                     Text(log.title).font(.title).bold()
                 }

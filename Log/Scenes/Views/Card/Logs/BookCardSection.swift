@@ -13,7 +13,7 @@ struct BookCardSection: View {
         HStack{
             Text(log.author)
             if log.releaseDate != nil {
-                Text(LogUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
+                Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
         }
     }

@@ -13,7 +13,7 @@ struct SongView: View {
         HStack{
             Text(song.name)
             Spacer()
-            Text(LogUtils.secondsToMinSec(song.duration))
+            Text(TimeUtils.secondsToMinSec(song.duration))
             Label("", systemImage: song.isSaved ? "star.filled" : "star")
         }
     }
