@@ -13,16 +13,13 @@ struct AddMusicSection: View {
     @Binding var releaseType: ReleaseType
     var body: some View {
         TextField("Artist", text: $artist)
-        HStack{
-            Text("Release type")
-            Picker("ReleaseType", selection: $releaseType){
-                Text("Single").tag(ReleaseType.single)
-                Text("Album").tag(ReleaseType.album)
-                Text("EP").tag(ReleaseType.EP)
-            }
+        Picker("ReleaseType", selection: $releaseType){
+            Text("Single").tag(ReleaseType.single)
+            Text("Album").tag(ReleaseType.album)
+            Text("EP").tag(ReleaseType.EP)
         }
-        if releaseType == .album || releaseType == .EP {
-            TextField("Album", text: $album)
+        if releaseType == .single {
+            TextField("Album title", text: $album)
         }
     }
 }
