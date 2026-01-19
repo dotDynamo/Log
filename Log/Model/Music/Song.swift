@@ -14,9 +14,9 @@ class Song{
     var name: String
     var duration: Int
     var isSaved: Bool = false
-    @Relationship var album: MusicLog
+    @Relationship var album: MusicLog?
     
-    init(id: UUID = UUID(), name: String, duration: Int, album: MusicLog) {
+    init(id: UUID = UUID(), name: String, duration: Int, album: MusicLog? = nil) {
         self.id = id
         self.name = name
         self.album = album
