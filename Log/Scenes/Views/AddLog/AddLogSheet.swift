@@ -90,11 +90,23 @@ struct AddLogSheet: View {
                                    selection: $finishDate,
                                    in: startDate...Date.now,
                                    displayedComponents: [.date])
+                        HStack{
+                            Text("Rating")
+                            Spacer()
+                            RatingPicker(rating: $rating)
+                        }
                     } else if status == .inProgress || status == .dropped {
                         DatePicker("Start date",
                                    selection: $startDate,
                                    in: releaseDate...Date.now,
                                    displayedComponents: [.date])
+                        if status == .dropped{
+                            HStack{
+                                Text("Rating")
+                                Spacer()
+                                RatingPicker(rating: $rating)
+                            }
+                        }
                     }
                     TextField("Recommended by", text: $recommendedBy)
                     TextField("Notes...", text: $notes, axis: .vertical)
