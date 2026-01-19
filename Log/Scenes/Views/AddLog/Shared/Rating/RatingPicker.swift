@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct RatingPicker: View {
+    @State var integer: Int = 0
+    @State var decimal: Int = 0
+    @State var isPresented: Bool = false
+    
+    @Binding var rating: Double
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(String(format: decimal == 0 ? "%d" : "%2d.%d", integer, decimal))
+            .frame(width: 50)
+            .padding(8)
+            .onTapGesture { isPresented.toggle()  }
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 20)))
+            .sheet(isPresented: $isPresented) {
+                RatingPickerSheet(integer: $integer, decimal: $decimal)
+            }
+            .onChange(of: isPresented) {
+                rating = Double(integer)
+                rating += Double(decimal) * 0.1
+            }
     }
 }
 
 #Preview {
-    RatingPicker()
+    @Previewable @State var rating: Double = 0.0
+    RatingPicker(rating: $rating)
 }
