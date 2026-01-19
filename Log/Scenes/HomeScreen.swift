@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeScreen: View {
     @EnvironmentObject var userSession: UserSession
+    let logService: LogService
+    
     @State var newLogSheetVisibility: Bool = false
     
     var body: some View {
@@ -22,7 +24,7 @@ struct HomeScreen: View {
             }
             .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
-                AddLogSheet()
+                AddLogSheet(logService: logService)
             }
             .navigationTitle("Home")
         }

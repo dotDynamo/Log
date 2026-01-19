@@ -16,10 +16,10 @@ struct NavigationBarScreen: View {
         VStack{
             TabView {
                 Tab("Home", systemImage: "house.fill"){
-                    HomeScreen()
+                    HomeScreen(logService: logService)
                 }
                 Tab("Library", systemImage: "books.vertical"){
-                    LibraryScreen()
+                    LibraryScreen(logService: logService)
                 }
                 Tab("Search", systemImage: "magnifyingglass"){
                     SearchScreen()
