@@ -30,6 +30,10 @@ struct AddLogSheet: View {
     @State var recommendedBy: String = ""
     @State var notes: String = ""
     
+    @State var director: String = ""
+    @State var writer: String = ""
+    @State var runningTime: Int = 0
+    
     @State var artist: String = ""
     @State var album: String = ""
     @State var releaseType: ReleaseType = .single
@@ -54,7 +58,7 @@ struct AddLogSheet: View {
                     
                     switch(category){
                     case .movie:
-                        AddMovieSection()
+                        AddMovieSection(director: $director, writer: $writer, runningTime: $runningTime)
                     case .series:
                         AddSeriesSection()
                     case .music:

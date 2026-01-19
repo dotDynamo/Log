@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct AddMovieSection: View {
+    @Binding var director: String
+    @Binding var writer: String
+    @Binding var runningTime: Int
+    
+    @State var runningTimeText: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TextField("Director", text: $director)
+        TextField("Writer", text: $writer)
+        HStack{
+            Text("Running time")
+            TextField("0", text: $runningTimeText){
+                if !runningTimeText.isEmpty{
+                    runningTime = Int(runningTimeText)!
+                }
+            }
+            .keyboardType(.numberPad)
+            .frame(maxWidth: .infinity)
+            .multilineTextAlignment(.trailing)
+            Text("minutes")
+        }
     }
-}
-
-#Preview {
-    AddMovieSection()
 }
