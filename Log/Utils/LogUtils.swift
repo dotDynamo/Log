@@ -33,9 +33,7 @@ struct LogUtils{
         case .inProgress:
             if log is MusicLog {
                 return "Listening"
-            } else if log is MovieLog  {
-                return "Watching"
-            } else if log is SeriesLog {
+            } else if log is MovieLog || log is SeriesLog {
                 return "Watching"
             } else if log is BookLog {
                 return "Reading"
@@ -44,50 +42,44 @@ struct LogUtils{
             }
         case .inQueue:
             if log is MusicLog {
-                return "Listenlist"
-            } else if log is MovieLog {
-                return "Watchlist"
-            } else if log is SeriesLog {
+                return "To listen"
+            } else if log is MovieLog || log is SeriesLog{
                 return "Watchlist"
             } else if log is BookLog {
-                return "Readlist"
+                return "To read"
             } else {
                 return "Backlog"
             }
         }
     }
     
-    static func getFromDate(_ date: Date?, get dateSection: Date.FormatStyle = .dateTime) -> String{
-        if date != nil {
-            return date!.formatted(dateSection)
+    static func addStatusToText(status: Status, category: LogCategory) -> String{
+        switch(status){
+        case .completed, .dropped:
+            return ""
+        case .inProgress:
+            switch(category){
+            case .book:
+                return "Reading"
+            case .game:
+                return "Playing"
+            case .movie, .series:
+                return "Watching"
+            case .music:
+                return "Listening"
+            }
+        case .inQueue:
+            switch(category){
+            case .book:
+                return "To read"
+            case .game:
+                return "Backlog"
+            case .movie, .series:
+                return "Watchlist"
+            case .music:
+                return "To listen"
+            }
         }
-        return ""
-    }
-    
-    static func compareDate(from startDate: Date, to endDate: Date, component: Calendar.Component = .day) -> Int?{
-        switch(component){
-        case .day:
-            return Calendar.current.dateComponents([.day], from: startDate, to: endDate).day
-        case .month:
-            return Calendar.current.dateComponents([.month], from: startDate, to: endDate).month
-        case .year:
-            return Calendar.current.dateComponents([.year], from: startDate, to: endDate).year
-        default:
-            return nil
-        }
-    }
-    
-    static func secondsToHMS(_ seconds: Int) -> String {
-        let hours: Int = seconds/3600
-        let minutes: Int = (seconds - (hours * 3600))/60
-        let seconds: Int = seconds - (minutes * 60) - (hours * 3600)
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
-    
-    static func secondsToMinSec(_ seconds: Int) -> String {
-        let minutes: Int = seconds/60
-        let seconds: Int = seconds - (minutes * 60)
-        return String(format: "%d:%02d", minutes, seconds)
     }
     
     static func getSeriesRating(_ log: SeriesLog) -> Double?{
