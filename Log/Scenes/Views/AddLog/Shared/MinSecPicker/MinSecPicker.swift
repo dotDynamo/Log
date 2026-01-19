@@ -33,9 +33,5 @@ struct MinSecPicker: View {
 #Preview {
     @Previewable @State var date: Date = Date.now
     @Previewable @State var duration: Int = 0
-    DatePicker("", selection: $date, displayedComponents: .hourAndMinute)
-    Text("dsfkalsjdfl")
     MinSecPicker(duration: $duration)
-    Text("\(duration)")
-    Text("dsfkalsjdfl")
 }
