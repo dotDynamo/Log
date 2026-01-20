@@ -9,12 +9,13 @@ import SwiftUI
 
 struct SeasonView: View {
     let season: Season
+    let number: Int
     var body: some View {
         HStack{
-            if season.name != nil{
-                Text(season.name!)
+            if season.name != ""{
+                Text(season.name)
             }else {
-                Text("Season \(season.number)")
+                Text("Season \(number)")
             }
             RatingView(rating: season.rating, size: .small, style: .capsule)
         }

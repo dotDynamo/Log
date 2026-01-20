@@ -14,13 +14,12 @@ class Episode{
     var name: String
     var rating: Double?
     var watched: Bool
-    @Relationship var season: Season
+    @Relationship var season: Season? = nil
     
-    init(id: UUID = UUID(), name: String, rating: Double? = nil, watched: Bool = false, season: Season) {
+    init(id: UUID = UUID(), name: String, rating: Double? = nil, watched: Bool = false) {
         self.id = id
         self.name = name
         self.rating = rating
         self.watched = watched
-        self.season = season
     }
 }

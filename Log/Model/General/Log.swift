@@ -89,7 +89,7 @@ class SeriesLog: Log{
     init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, creator: String, studio: String? = nil) {
         self.creator = creator
         self.studio = studio
-        self.seasons = [Season(number: 1)]
+        self.seasons = []
         super.init(title: title, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, recommendedBy: recommendedBy, notes: notes, status: status, user: user)
     }
 }

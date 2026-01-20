@@ -20,7 +20,7 @@ struct SeriesDetailView: View {
         let seasonNumber = log.seasons.count
         Text(seasonNumber == 1 ? "1 Season" : "\(seasonNumber) Seasons")
         ForEach(log.seasons){ season in
-            SeasonView(season: season)
+            SeasonView(season: season, number: log.seasons.firstIndex(of: season)! + 1)
         }
     }
 }

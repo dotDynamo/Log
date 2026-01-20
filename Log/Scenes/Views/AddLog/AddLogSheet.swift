@@ -26,7 +26,7 @@ struct AddLogSheet: View {
     @State var status: Status = .inQueue
     @State var startDate: Date = Date.now
     @State var finishDate: Date = Date.now
-    @State var rating: Double = 0.0
+    @State var rating: Double? = nil
     @State var recommendedBy: String = ""
     @State var notes: String = ""
     
@@ -36,6 +36,7 @@ struct AddLogSheet: View {
     
     @State var creator: String = ""
     @State var studio: String = ""
+    @State var seasons: [Season] = [Season(name: "")]
     
     @State var artist: String = ""
     @State var album: String = ""
@@ -76,6 +77,8 @@ struct AddLogSheet: View {
                 
                 if category == .music && (releaseType == .album || releaseType == .EP) {
                     AddTracklistView(songs: $songs)
+                } else if category == .series {
+                    AddSeasonView(seasons: $seasons)
                 }
 
                 Section("Status"){

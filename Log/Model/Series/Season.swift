@@ -11,8 +11,7 @@ import SwiftData
 @Model
 class Season{
     @Attribute(.unique) var id : UUID
-    var number: Int
-    var name: String?
+    var name: String
     var rating: Double? {
         guard !episodes.isEmpty else { return  nil}
         var totalEpisodes = 0.0
@@ -25,11 +24,11 @@ class Season{
         }
         return ratingTotal/totalEpisodes
     }
+    @Relationship() var series: SeriesLog? = nil
     @Relationship(deleteRule: .cascade) var episodes: [Episode] = []
     
-    init(id: UUID = UUID(), number: Int, name: String? = nil) {
+    init(id: UUID = UUID(), name: String) {
         self.id = id
-        self.number = number
         self.name = name
     }
 }
