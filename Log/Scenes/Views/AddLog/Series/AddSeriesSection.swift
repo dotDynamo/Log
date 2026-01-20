@@ -16,10 +16,3 @@ struct AddSeriesSection: View {
         TextField("Studio", text: $studio)
     }
 }
-
-/*
-  creator
-  studio
-  seasons
-    episodes
- */
