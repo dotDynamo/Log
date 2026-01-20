@@ -12,10 +12,10 @@ struct RatingPicker: View {
     @State var decimal: Int = 0
     @State var isPresented: Bool = false
     
-    @Binding var rating: Double
+    @Binding var rating: Double?
 
     var body: some View {
-        Text(String(format: decimal == 0 ? "%d" : "%2d.%d", integer, decimal))
+        Text( rating != nil ? String(format: decimal == 0 ? "%d" : "%2d.%d", integer, decimal) : "-")
             .frame(width: 50)
             .padding(8)
             .onTapGesture { isPresented.toggle()  }
@@ -26,12 +26,14 @@ struct RatingPicker: View {
             }
             .onChange(of: isPresented) {
                 rating = Double(integer)
-                rating += Double(decimal) * 0.1
+                rating! += Double(decimal) * 0.1
             }
     }
 }
 
 #Preview {
-    @Previewable @State var rating: Double = 0.0
+    @Previewable @State var rating: Double? = 0.0
+    @Previewable @State var rating2: Double? = nil
     RatingPicker(rating: $rating)
+    RatingPicker(rating: $rating2)
 }
