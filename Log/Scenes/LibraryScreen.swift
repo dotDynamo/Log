@@ -13,9 +13,10 @@ struct LibraryScreen: View {
     @State var newLogSheetVisibility: Bool = false
     
     @State var category: LogCategory = .movie
+    @State private var user: User = User(username: "", name: "", paternalSurname: "", maternalSurname: "")
     
     var body: some View {
-        NavigationStack{
+        NavigationView{
             VStack{
                 Picker("Category", selection: $category){
                     Image(systemName: "film.fill").tag(LogCategory.movie)
@@ -33,14 +34,18 @@ struct LibraryScreen: View {
                 AddLogSheet(logService: logService, category: $category)
             }
             .navigationTitle("Library")
+            .onAppear(){
+                if userSession.currentUser != nil { user = userSession.currentUser! }
+            }
+            .onChange(of: user) {
+                userSession.currentUser = user
+            }
         }
         .overlay(
             VStack {
                 HStack {
                     Spacer()
-                    if let currentUser = userSession.currentUser {
-                        UserView(user: currentUser, showUsername: false, size: .small).padding(.trailing)
-                    }
+                    UserView(user: $user, showUsername: false, size: .small, isClickable: true).padding(.trailing)
                 }
                 Spacer()
             }

@@ -36,7 +36,7 @@ struct CardView: View {
 }
 
 #Preview {
-    let user = User(username: "Webardo", name: "Diego", paternalSurname: "Herrera")
+    let user = User(username: "Webardo", name: "Diego", paternalSurname: "Herrera", maternalSurname: "Olmos")
     let log = MovieLog(title: "Alien", releaseDate: Date.now, rating: 9.3, status: .completed, user: user, director: "Ridley Scott", writer: "Dan O'Bannon", runningTime: 116)
     CardView(log: log)
 }

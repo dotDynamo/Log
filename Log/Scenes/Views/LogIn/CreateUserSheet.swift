@@ -18,9 +18,7 @@ struct CreateUserSheet: View {
     @State var paternalSurname: String = ""
     @State var maternalSurname: String = ""
     @State var profilePic: Data? = nil
-    
-    @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var selectedImage: UIImage? = nil
+    @State var selectedImage: UIImage? = nil
     
     var body: some View {
         NavigationView{
@@ -31,29 +29,7 @@ struct CreateUserSheet: View {
                     TextField("", text: $name, prompt:Text("Name"))
                     TextField("", text: $paternalSurname, prompt:Text("Paternal Surname"))
                     TextField("", text: $maternalSurname, prompt:Text("Maternal Surname"))
-                    PhotosPicker(
-                        selection: $selectedItem,
-                        matching: .images,
-                        photoLibrary: .shared()) {
-                        HStack{
-                            Label("Profile Picture", systemImage: "photo")
-                            if selectedImage != nil{
-                                Spacer()
-                                Image(uiImage: selectedImage!)
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle())
-                            }
-                        }
-                    }
-                    .onChange(of: selectedItem){
-                        Task{
-                            if let data = try? await selectedItem?.loadTransferable(type: Data.self),
-                               let uiImage = UIImage(data: data) {
-                                selectedImage = uiImage
-                            }
-                        }
-                    }
+                    UserImagePicker(selectedImage: $selectedImage)
                 }
                 Button("Create new user"){
                     let user = User(username: username, name: name, paternalSurname: paternalSurname,

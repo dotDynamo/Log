@@ -61,7 +61,7 @@ struct AddLogSheet: View {
                 Image(systemName: "gamecontroller.fill").tag(LogCategory.game)
             }
             .pickerStyle(.segmented)
-            .padding(1)
+            .padding([.leading, .trailing], 15)
             
             List{
                 Section("General info"){

@@ -12,7 +12,7 @@ struct UserSelectionScreen: View {
     @Query(sort: \User.name) private var users: [User]
     var body: some View {
         ForEach(users){ user in
-            UserView(user: user)
+            //UserView(user: $user)
         }
     }
 }
