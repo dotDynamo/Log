@@ -12,15 +12,25 @@ struct LibraryScreen: View {
     let logService: LogService
     @State var newLogSheetVisibility: Bool = false
     
+    @State var category: LogCategory = .movie
+    
     var body: some View {
         NavigationStack{
             VStack{
-                Text("This is the library")
+                Picker("Category", selection: $category){
+                    Image(systemName: "film.fill").tag(LogCategory.movie)
+                    Image(systemName: "tv.fill").tag(LogCategory.series)
+                    Image(systemName: "music.note").tag(LogCategory.music)
+                    Image(systemName: "book.fill").tag(LogCategory.book)
+                    Image(systemName: "gamecontroller.fill").tag(LogCategory.game)
+                }
+                .pickerStyle(.segmented)
+                .padding()
                 AddLogButton(action: {newLogSheetVisibility.toggle()})
             }
             .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
-                AddLogSheet(logService: logService)
+                AddLogSheet(logService: logService, category: $category)
             }
             .navigationTitle("Library")
         }

@@ -12,6 +12,7 @@ struct HomeScreen: View {
     let logService: LogService
     
     @State var newLogSheetVisibility: Bool = false
+    @State var category: LogCategory = .movie
     
     var body: some View {
         NavigationStack{
@@ -24,7 +25,7 @@ struct HomeScreen: View {
             }
             .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
-                AddLogSheet(logService: logService)
+                AddLogSheet(logService: logService, category: $category)
             }
             .navigationTitle("Home")
         }
