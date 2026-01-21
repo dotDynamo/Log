@@ -20,9 +20,9 @@ struct GameDetailView: View {
             Text("Release date:").font(.headline).foregroundStyle(.gray)
             Text(log.releaseDate!, format: .dateTime.year().month().day())
         }
-        if log.totalAchievements != nil {
+        if log.achievements.count != 0 {
             Divider()
-            AchievementView(achievementCount: log.totalAchievements!, achievements: log.achievements)
+            AchievementView(achievements: log.achievements)
         }
         RunView(runs: log.runs)
     }

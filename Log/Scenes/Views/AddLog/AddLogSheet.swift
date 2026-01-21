@@ -19,7 +19,7 @@ struct AddLogSheet: View {
     @Environment(\.dismiss) var dismiss
     let logService: LogService
     
-    @State var category: LogCategory = .book
+    @Binding var category: LogCategory
     
     @State var title: String = ""
     @State var releaseDate: Date = Date.now
@@ -43,20 +43,27 @@ struct AddLogSheet: View {
     @State var releaseType: ReleaseType = .single
     @State var songs: [Song] = []
     
+    @State var author: String = ""
+    @State var isbn: String = ""
+    
+    @State var platform: String = ""
+    
+    @State var achievements: [Achievement] = []
+    @State var runs: [Run] = []
+    
     var body: some View {
         NavigationStack{
+            Picker("Category", selection: $category) {
+                Image(systemName: "film.fill").tag(LogCategory.movie)
+                Image(systemName: "tv.fill").tag(LogCategory.series)
+                Image(systemName: "music.note").tag(LogCategory.music)
+                Image(systemName: "book.fill").tag(LogCategory.book)
+                Image(systemName: "gamecontroller.fill").tag(LogCategory.game)
+            }
+            .pickerStyle(.segmented)
+            .padding(1)
+            
             List{
-                Section("Category") {
-                    Picker("Category", selection: $category) {
-                        Image(systemName: "film.fill").tag(LogCategory.movie)
-                        Image(systemName: "tv.fill").tag(LogCategory.series)
-                        Image(systemName: "music.note").tag(LogCategory.music)
-                        Image(systemName: "book.fill").tag(LogCategory.book)
-                        Image(systemName: "gamecontroller.fill").tag(LogCategory.game)
-                    }
-                    .pickerStyle(.segmented)
-                }
-                
                 Section("General info"){
                     TextField("Title", text: $title)
                     
@@ -68,9 +75,9 @@ struct AddLogSheet: View {
                     case .music:
                         AddMusicSection(artist: $artist, album: $album, releaseType: $releaseType)
                     case .book:
-                        AddBookSection()
+                        AddBookSection(author: $author, isbn: $isbn)
                     case .game:
-                        AddGameSection()
+                        AddGameSection(creator: $creator, studio: $studio, platform: $platform)
                     }
                     DatePicker("Release date", selection: $releaseDate,displayedComponents: [.date])
                 }
@@ -79,6 +86,9 @@ struct AddLogSheet: View {
                     AddTracklistView(songs: $songs)
                 } else if category == .series {
                     AddSeasonView(seasons: $seasons)
+                } else if category == .game {
+                    AddRunSection(runs: $runs, achievementCount: achievements.count)
+                    AddAchievementsSection(achievements: $achievements)
                 }
 
                 Section("Status"){
@@ -150,6 +160,7 @@ struct AddLogSheet: View {
 
 #Preview {
     @Previewable @Environment(\.modelContext) var modelContext
+    @Previewable @State var cat: LogCategory = .movie
     let logService = LogService(modelContext: modelContext)
-    AddLogSheet(logService: logService)
+    AddLogSheet(logService: logService, category: $cat)
 }

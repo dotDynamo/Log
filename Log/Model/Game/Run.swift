@@ -11,18 +11,17 @@ import SwiftData
 @Model
 class Run{
     @Attribute(.unique) var id: UUID
-    var completedTime: Int?
+    var completedTime: Double
     var mode: String
-    var achievements: Int?
+    var achievements: Int
     var date: Date
-    @Relationship var game: GameLog
+    @Relationship var game: GameLog? = nil
     
-    init(id: UUID = UUID(), completedTime: Int? = nil, mode: String, achievements: Int? = nil, date: Date, game: GameLog) {
+    init(id: UUID = UUID(), completedTime: Double, mode: String, achievements: Int, date: Date) {
         self.id = id
         self.completedTime = completedTime
         self.mode = mode
         self.achievements = achievements
         self.date = date
-        self.game = game
     }
 }

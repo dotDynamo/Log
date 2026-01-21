@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct AchievementView: View {
-    var achievementCount: Int
     var achievements: [Achievement]
     var body: some View {
         VStack(alignment: .leading){
-            Label("\(countCompletedAchievements()) / \(achievementCount)", systemImage: "trophy.circle")
+            Label("\(countCompletedAchievements()) / \(achievements.count)", systemImage: "trophy.circle")
             ForEach(achievements){achievement in
                 Text(achievement.name).foregroundStyle(achievement.isCompleted ? .white : .gray)
-                if achievement.isCompleted && achievement.detail != nil {
-                    Text(achievement.detail!).font(.caption)
+                if achievement.isCompleted && !achievement.detail.isEmpty {
+                    Text(achievement.detail).font(.caption)
                 }
             }
         }
@@ -34,13 +33,11 @@ struct AchievementView: View {
 }
 
 #Preview {
-    let user = User(username: "Diego", name: "Diego", paternalSurname: "Herrera")
-    let game = GameLog(title: "KH", user: user, gameStudio: "Team Cherry", platform: "Xbox Series X")
-    let ach1 = Achievement(name: "Episodio 1", detail: "Whoaaaa this is an avhievemet", isCompleted: true, game: game)
-    let ach2 = Achievement(name: "Episodio 2", detail: "This is the second achievement", isCompleted: true, game: game)
-    let ach3 = Achievement(name: "Episodio 3", game: game)
-    let ach4 = Achievement(name: "Episodio 4", game: game)
-    let ach5 = Achievement(name: "Episodio 5", game: game)
+    let ach1 = Achievement(name: "Episodio 1", detail: "Whoaaaa this is an avhievemet", isCompleted: true)
+    let ach2 = Achievement(name: "Episodio 2", detail: "This is the second achievement", isCompleted: true)
+    let ach3 = Achievement(name: "Episodio 3", detail: "")
+    let ach4 = Achievement(name: "Episodio 4", detail: "")
+    let ach5 = Achievement(name: "Episodio 5", detail: "")
     let list = [ach1, ach2, ach3, ach4, ach5]
-    AchievementView(achievementCount: list.count, achievements: list)
+    AchievementView(achievements: list)
 }

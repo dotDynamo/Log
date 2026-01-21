@@ -23,8 +23,8 @@ struct RunView: View {
                         Text(run.mode)
                         Text(run.date, format: .dateTime.year().month().day())
                         Spacer()
-                        if run.completedTime != nil {
-                            Text(TimeUtils.secondsToHMS(run.completedTime!))
+                        if run.completedTime != -1.0 {
+                            Text(TimeUtils.secondsToHMS(Int(run.completedTime)))
                         }
                     }.padding()
                     Divider()
@@ -38,10 +38,9 @@ struct RunView: View {
 
 
 #Preview {
-    let game = GameLog(title: "", user: User(username: "", name: "", paternalSurname: ""), gameStudio: "", platform: "")
-    let run = Run(completedTime: 3665, mode: "normal", date: Date.now, game: game)
-    let run2 = Run(completedTime: 3665, mode: "normal", date: Date.now, game: game)
-    let run3 = Run(completedTime: 3665, mode: "normal", date: Date.now, game: game)
+    let run = Run(completedTime: 3665, mode: "normal", achievements: 0, date: Date.now)
+    let run2 = Run(completedTime: 3665, mode: "normal", achievements: 0, date: Date.now)
+    let run3 = Run(completedTime: 3665, mode: "normal", achievements: 0, date: Date.now)
     RunView(runs: [run, run2, run3])
     RunView(runs: [])
 }
