@@ -13,7 +13,7 @@ struct MinSecPicker: View {
     @State var isPresented: Bool = false
     
     @Binding var duration: Int
-
+    
     var body: some View {
         Text(String(format: "%02d:%02d", minute, second))
             .frame(width: 50)
@@ -31,7 +31,6 @@ struct MinSecPicker: View {
 }
 
 #Preview {
-    @Previewable @State var date: Date = Date.now
     @Previewable @State var duration: Int = 0
     MinSecPicker(duration: $duration)
 }

@@ -12,7 +12,7 @@ struct AddEpisodesView: View {
     
     var body: some View {
         List{
-            Section(){
+            Section("\(season.name)"){
                 ForEach($season.episodes){ $episode in
                     HStack{
                         Text(String((season.episodes.firstIndex(of: episode) ?? 0) + 1))
@@ -22,6 +22,8 @@ struct AddEpisodesView: View {
                             RatingPicker(rating: $episode.rating)
                         }
                     }
+                }.onDelete { indexSet in
+                    season.episodes.remove(atOffsets: indexSet)
                 }
                 Button(action: addEpisode){
                     Label("Add Episode", systemImage: "plus")
