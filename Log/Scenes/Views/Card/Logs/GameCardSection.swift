@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct GameCardSection: View {
-    let log: GameLog
+    let log: Log
     var body: some View {
         HStack{
-            Text(log.gameStudio)
+            Text(log.game!.gameStudio)
             if log.releaseDate != nil {
                 Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
-            Text(log.platform).font(.caption)
+            Text(log.game!.platform).font(.caption)
         }
     }
 }

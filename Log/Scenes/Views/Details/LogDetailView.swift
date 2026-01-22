@@ -22,19 +22,17 @@ struct LogDetailView: View {
                 RatingView(rating: log.rating, size: .large, style: .round)
             }
             Divider()
-            switch log{
-            case is MusicLog:
-                MusicDetailView(log: log as! MusicLog)
-            case is MovieLog:
-                MovieDetailView(log: log as! MovieLog)
-            case is SeriesLog:
-                SeriesDetailView(log: log as! SeriesLog)
-            case is BookLog:
-                BookDetailView(log: log as! BookLog)
-            case is GameLog:
-                GameDetailView(log: log as! GameLog)
-            default:
-                Text("Some error ocurred")
+            switch log.category{
+            case .movie:
+                MovieDetailView(log: log)
+            case .series:
+                SeriesDetailView(log: log)
+            case .music:
+                MusicDetailView(log: log)
+            case .book:
+                BookDetailView(log: log)
+            case .game:
+                GameDetailView(log: log)
             }
             DatePeriodView(startDate: log.startDate, finishDate: log.finishDate)
             if log.recommendedBy != nil {
@@ -63,15 +61,4 @@ struct LogDetailView: View {
     func stub(){
         print("Edit button")
     }
-}
-
-#Preview {
-    let user: User = User(username: "diego", name: "Diego", paternalSurname: "Herrera")
-    let log: Log = GameLog(title: "Hollow Knight", releaseDate: Date.now,
-                           startDate: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 8)), finishDate: Date.now,
-                           rating: 9.3, recommendedBy: "Friends name",
-                           notes: "Sección de notas",
-                           status: .completed, user: user,
-                           gameStudio: "Team Cherry", platform: "Nintendo Switch")
-    LogDetailView(log: log)
 }

@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct SeriesDetailView: View {
-    let log: SeriesLog
+    let log: Log
     var body: some View {
         Text("Creator").font(.headline).foregroundStyle(.gray)
-        Text(log.creator)
-        if log.studio != nil {
+        Text(log.series!.creator)
+        if log.series!.studio != nil {
             Text("Studio").font(.headline).foregroundStyle(.gray)
-            Text(log.studio!)
+            Text(log.series!.studio!)
         }
         Divider()
-        let seasonNumber = log.seasons.count
+        let seasonNumber = log.series!.seasons.count
         Text(seasonNumber == 1 ? "1 Season" : "\(seasonNumber) Seasons")
-        ForEach(log.seasons){ season in
-            SeasonView(season: season, number: log.seasons.firstIndex(of: season)! + 1)
+        ForEach(log.series!.seasons){ season in
+            SeasonView(season: season, number: log.series!.seasons.firstIndex(of: season)! + 1)
         }
     }
 }

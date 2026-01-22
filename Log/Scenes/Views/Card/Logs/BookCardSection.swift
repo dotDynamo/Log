@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BookCardSection: View {
-    let log: BookLog
+    let log: Log
     var body: some View {
         HStack{
-            Text(log.author)
+            Text(log.book!.author)
             if log.releaseDate != nil {
                 Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }

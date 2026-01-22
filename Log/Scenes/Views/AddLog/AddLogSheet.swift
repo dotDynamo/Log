@@ -7,17 +7,10 @@
 
 import SwiftUI
 
-enum LogCategory{
-    case movie
-    case series
-    case music
-    case book
-    case game
-}
-
 struct AddLogSheet: View {
     @Environment(\.dismiss) var dismiss
     let logService: LogService
+    let currentUser: User
     
     @Binding var category: LogCategory
     
@@ -140,7 +133,8 @@ struct AddLogSheet: View {
             Button("Log It"){
                 switch(category){
                 case .movie:
-                    logService.addMovieLog()
+                    logService.addMovieLog(title: title, director: director, writer: writer, runningTime: runningTime, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+                    dismiss()
                 case .series:
                     logService.addSeriesLog()
                 case .music:
@@ -162,5 +156,5 @@ struct AddLogSheet: View {
     @Previewable @Environment(\.modelContext) var modelContext
     @Previewable @State var cat: LogCategory = .movie
     let logService = LogService(modelContext: modelContext)
-    AddLogSheet(logService: logService, category: $cat)
+    AddLogSheet(logService: logService, currentUser: User(username: "", name: "", paternalSurname: "", maternalSurname: ""), category: $cat)
 }

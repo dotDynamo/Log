@@ -31,21 +31,21 @@ struct LogUtils{
         case .dropped:
             return "Dropped"
         case .inProgress:
-            if log is MusicLog {
+            if log.category == .music {
                 return "Listening"
-            } else if log is MovieLog || log is SeriesLog {
+            } else if log.category == .movie || log.category == .series {
                 return "Watching"
-            } else if log is BookLog {
+            } else if log.category == .book {
                 return "Reading"
             } else {
                 return "Playing"
             }
         case .inQueue:
-            if log is MusicLog {
+            if log.category == .music {
                 return "To listen"
-            } else if log is MovieLog || log is SeriesLog{
+            } else if log.category == .movie || log.category == .series {
                 return "Watchlist"
-            } else if log is BookLog {
+            } else if log.category == .book {
                 return "To read"
             } else {
                 return "Backlog"

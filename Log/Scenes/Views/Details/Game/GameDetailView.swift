@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct GameDetailView: View {
-    let log: GameLog
+    let log: Log
     var body: some View {
-        Text(log.gameStudio).bold()
-        if log.creator != nil{
-            Text(log.creator!)
+        Text(log.game!.gameStudio).bold()
+        if log.game!.creator != nil{
+            Text(log.game!.creator!)
         }
-        Text(log.platform)
+        Text(log.game!.platform)
         if log.releaseDate != nil {
             Divider()
             Text("Release date:").font(.headline).foregroundStyle(.gray)
             Text(log.releaseDate!, format: .dateTime.year().month().day())
         }
-        if log.achievements.count != 0 {
+        if log.game!.achievements.count != 0 {
             Divider()
-            AchievementView(achievements: log.achievements)
+            AchievementView(achievements: log.game!.achievements)
         }
-        RunView(runs: log.runs)
+        RunView(runs: log.game!.runs)
     }
 }

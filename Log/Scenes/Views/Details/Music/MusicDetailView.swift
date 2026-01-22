@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct MusicDetailView: View {
-    let log: MusicLog
+    let log: Log
     var body: some View {
-        switch(log.releaseType){
+        switch(log.music!.releaseType){
         case .single, .EP:
-            Text(log.artist)
-            if log.album != nil {
-                Text(log.album!)
+            Text(log.music!.artist)
+            if log.music!.album != nil {
+                Text(log.music!.album!)
             }
         case .album:
-            Text(log.artist)
+            Text(log.music!.artist)
         }
         
         Divider()
-        if log.releaseType != .single {
+        if log.music!.releaseType != .single {
             Text("Tracklist").font(.headline).foregroundStyle(.gray)
             VStack{
-                ForEach(log.trackList){ song in
+                ForEach(log.music!.trackList){ song in
                     HStack{
                         SongView(song: song)
                     }.padding()

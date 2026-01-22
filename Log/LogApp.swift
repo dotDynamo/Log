@@ -17,6 +17,15 @@ struct LogApp: App {
             ContentView()
                 .environmentObject(userSession)
         }
-        .modelContainer(for: Log.self)
+        .modelContainer(for: [
+                    Log.self,
+                    MovieLog.self,
+                    SeriesLog.self,
+                    MusicLog.self,
+                    BookLog.self,
+                    GameLog.self,
+                    User.self,
+                    Tag.self
+                ])
     }
 }

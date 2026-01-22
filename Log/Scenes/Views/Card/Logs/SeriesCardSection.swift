@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct SeriesCardSection: View {
-    let log: SeriesLog
+    let log: Log
     var body: some View {
         HStack{
-            if log.studio != nil {
-                Text(log.studio!)
+            if log.series!.studio != nil {
+                Text(log.series!.studio!)
             }
             if log.releaseDate != nil {
                 Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
-            if log.seasons.count == 1{
-                Text(String(log.seasons.count)+" season").font(.caption)
+            if log.series!.seasons.count == 1{
+                Text(String(log.series!.seasons.count)+" season").font(.caption)
             } else {
-                Text(String(log.seasons.count)+" seasons").font(.caption)
+                Text(String(log.series!.seasons.count)+" seasons").font(.caption)
             }
         }
     }

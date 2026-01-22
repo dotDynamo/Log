@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    let log: BookLog
+    let log: Log
     var body: some View {
         Text("Author").font(.headline).foregroundStyle(.gray)
-        Text(log.author)
-        if log.isbn != nil{
+        Text(log.book!.author)
+        if log.book!.isbn != nil{
             Text("ISBN").font(.headline).foregroundStyle(.gray)
-            Text(log.isbn!)
+            Text(log.book!.isbn!)
         }
     }
 }

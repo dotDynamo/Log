@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    let log: MovieLog
+    let log: Log
     var body: some View {
-        if log.director == log.writer {
+        if log.movie!.director == log.movie!.writer {
             Text("Written and directed by").font(.headline).foregroundStyle(.gray)
-            Text(log.director)
+            Text(log.movie!.director)
         } else  {
             Text("Directed by").font(.headline).foregroundStyle(.gray)
-            Text(log.director)
+            Text(log.movie!.director)
             Text("Written by").font(.headline).foregroundStyle(.gray)
-            Text(log.writer)
+            Text(log.movie!.writer)
         }
         Text("Runtime").font(.headline).foregroundStyle(.gray)
-        Text("\(log.runningTime) mins.")
+        Text("\(log.movie!.runningTime) mins.")
     }
 }

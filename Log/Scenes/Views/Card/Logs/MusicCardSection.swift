@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MusicCardSection: View {
-    let log: MusicLog
+    let log: Log
     var body: some View {
         HStack{
-            Text(log.artist)
+            Text(log.music!.artist)
             if log.releaseDate != nil {
                 Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }
-            Text(log.releaseType.rawValue).font(.caption)
+            Text(log.music!.releaseType.rawValue).font(.caption)
         }
     }
 }

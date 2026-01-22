@@ -27,11 +27,12 @@ struct LibraryScreen: View {
                 }
                 .pickerStyle(.segmented)
                 .padding()
+                LogList()
                 AddLogButton(action: {newLogSheetVisibility.toggle()})
             }
             .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
-                AddLogSheet(logService: logService, category: $category)
+                AddLogSheet(logService: logService, currentUser: user, category: $category)
             }
             .navigationTitle("Library")
             .onAppear(){

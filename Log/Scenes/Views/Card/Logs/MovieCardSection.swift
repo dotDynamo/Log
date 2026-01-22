@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MovieCardSection: View {
-    let log: MovieLog
+    let log: Log
     var body: some View {
         HStack{
-            Text(log.director)
+            Text(log.movie!.director)
             if log.releaseDate != nil {
                 Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             }

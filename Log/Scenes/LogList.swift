@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LogList: View {
+    @Query(sort: \Log.title) private var logs: [Log]
+    @Environment(\.modelContext) private var modelContext
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            Text("log count: \(logs.count)")
+            List{
+                ForEach(logs){ log in
+                    NavigationLink(value: log){
+                        CardView(log: log)
+                    }
+                }
+            }.navigationDestination(for: Log.self){ log in
+                LogDetailView(log: log)
+            }
+        }
     }
-}
-
-#Preview {
-    LogList()
 }

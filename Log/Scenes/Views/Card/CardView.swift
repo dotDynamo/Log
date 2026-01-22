@@ -13,19 +13,17 @@ struct CardView: View {
         HStack{
             VStack(alignment: .leading, spacing: 0){
                 CommonCardSection(log: log)
-                switch log{
-                case is MusicLog:
-                    MusicCardSection(log: log as! MusicLog)
-                case is MovieLog:
-                    MovieCardSection(log: log as! MovieLog)
-                case is SeriesLog:
-                    SeriesCardSection(log: log as! SeriesLog)
-                case is BookLog:
-                    BookCardSection(log: log as! BookLog)
-                case is GameLog:
-                    GameCardSection(log: log as! GameLog)
-                default:
-                    Text("Some error ocurred")
+                switch log.category {
+                case .movie:
+                    MovieCardSection(log: log)
+                case .series:
+                    SeriesCardSection(log: log)
+                case .music:
+                    MusicCardSection(log: log)
+                case .book:
+                    BookCardSection(log: log)
+                case .game:
+                    GameCardSection(log: log)
                 }
             }
             Spacer()
@@ -33,10 +31,4 @@ struct CardView: View {
         }
         TagView(tags: log.tags)
     }
-}
-
-#Preview {
-    let user = User(username: "Webardo", name: "Diego", paternalSurname: "Herrera", maternalSurname: "Olmos")
-    let log = MovieLog(title: "Alien", releaseDate: Date.now, rating: 9.3, status: .completed, user: user, director: "Ridley Scott", writer: "Dan O'Bannon", runningTime: 116)
-    CardView(log: log)
 }

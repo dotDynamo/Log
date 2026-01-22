@@ -26,7 +26,7 @@ struct HomeScreen: View {
             }
             .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
-                AddLogSheet(logService: logService, category: $category)
+                AddLogSheet(logService: logService, currentUser: user, category: $category)
             }
             .navigationTitle("Home")
             .onAppear(){
