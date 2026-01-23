@@ -53,4 +53,7 @@ struct LogService{
         try? modelContext.save()
     }
     
+    func deleteLog(_ log: Log){
+        modelContext.delete(log)
+    }
 }

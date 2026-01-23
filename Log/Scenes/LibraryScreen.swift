@@ -26,9 +26,8 @@ struct LibraryScreen: View {
                     Image(systemName: "gamecontroller.fill").tag(LogCategory.game)
                 }
                 .pickerStyle(.segmented)
-                .padding()
-                LogList()
-                AddLogButton(action: {newLogSheetVisibility.toggle()})
+                .padding([.trailing, .leading, .top], 10)
+                LogList(logService: logService)
             }
             .toolbarTitleDisplayMode(.inlineLarge)
             .sheet(isPresented: $newLogSheetVisibility){
@@ -49,6 +48,10 @@ struct LibraryScreen: View {
                     UserView(user: $user, showUsername: false, size: .small, isClickable: true).padding(.trailing)
                 }
                 Spacer()
+                HStack {
+                    Spacer()
+                    AddLogButton(action: {newLogSheetVisibility.toggle()})
+                }
             }
         )
     }
