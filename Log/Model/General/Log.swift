@@ -70,7 +70,7 @@ class MovieLog{
     var writer: String
     var runningTime: Int
     
-    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, director: String, writer: String, runningTime: Int) {
+    init(director: String, writer: String, runningTime: Int) {
         self.director = director
         self.writer = writer
         self.runningTime = runningTime
@@ -83,10 +83,10 @@ class SeriesLog{
     var studio: String?
     @Relationship(deleteRule: .cascade) var seasons: [Season]
     
-    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, creator: String, studio: String? = nil) {
+    init(creator: String, studio: String? = nil, seasons: [Season]) {
         self.creator = creator
         self.studio = studio
-        self.seasons = []
+        self.seasons = seasons
     }
 }
 
@@ -95,12 +95,13 @@ class MusicLog{
     var artist: String
     var album: String?
     var releaseType: ReleaseType
-    @Relationship(deleteRule: .cascade) var trackList: [Song] = []
+    @Relationship(deleteRule: .cascade) var tracklist: [Song] = []
     
-    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, artist: String, album: String? = nil, releaseType: ReleaseType = .single) {
+    init(artist: String, album: String? = nil, releaseType: ReleaseType = .single, tracklist: [Song]) {
         self.artist = artist
         self.album = album
         self.releaseType = releaseType
+        self.tracklist = tracklist
     }
 }
 
@@ -109,7 +110,7 @@ class BookLog{
     var author: String
     var isbn: String?
     
-    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, author: String, isbn: String? = nil) {
+    init(author: String, isbn: String? = nil) {
         self.author = author
         self.isbn = isbn
     }
@@ -124,10 +125,12 @@ class GameLog{
     @Relationship(deleteRule: .cascade)var achievements: [Achievement] = []
     
     
-    init(title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User, creator: String? = nil, gameStudio: String, platform: String) {
+    init(creator: String? = nil, gameStudio: String, platform: String, runs: [Run], achievements: [Achievement]) {
         self.creator = creator
         self.gameStudio = gameStudio
         self.platform = platform
+        self.runs = runs
+        self.achievements = achievements
     }
 }
 

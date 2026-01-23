@@ -24,7 +24,7 @@ struct MusicDetailView: View {
         if log.music!.releaseType != .single {
             Text("Tracklist").font(.headline).foregroundStyle(.gray)
             VStack{
-                ForEach(log.music!.trackList){ song in
+                ForEach(log.music!.tracklist){ song in
                     HStack{
                         SongView(song: song)
                     }.padding()

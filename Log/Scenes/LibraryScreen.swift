@@ -17,7 +17,7 @@ struct LibraryScreen: View {
     
     var body: some View {
         NavigationView{
-            VStack{
+            VStack {
                 Picker("Category", selection: $category){
                     Image(systemName: "film.fill").tag(LogCategory.movie)
                     Image(systemName: "tv.fill").tag(LogCategory.series)

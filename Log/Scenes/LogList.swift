@@ -14,7 +14,6 @@ struct LogList: View {
     
     var body: some View {
         NavigationStack{
-            Text("log count: \(logs.count)")
             List{
                 ForEach(logs){ log in
                     NavigationLink(value: log){

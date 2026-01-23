@@ -18,8 +18,3 @@ struct SongView: View {
         }
     }
 }
-
-#Preview {
-    let log: MusicLog = MusicLog(title: "Fower Boy", user: User(username: "", name: "", paternalSurname: ""), artist: "Tyler, The Creator")
-    SongView(song: Song(name: "See You Again (feat. Kali Uchis)", duration: 179, album: log))
-}

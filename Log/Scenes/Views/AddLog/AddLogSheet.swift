@@ -34,7 +34,7 @@ struct AddLogSheet: View {
     @State var artist: String = ""
     @State var album: String = ""
     @State var releaseType: ReleaseType = .single
-    @State var songs: [Song] = []
+    @State var tracklist: [Song] = []
     
     @State var author: String = ""
     @State var isbn: String = ""
@@ -76,7 +76,7 @@ struct AddLogSheet: View {
                 }
                 
                 if category == .music && (releaseType == .album || releaseType == .EP) {
-                    AddTracklistView(songs: $songs)
+                    AddTracklistView(songs: $tracklist)
                 } else if category == .series {
                     AddSeasonView(seasons: $seasons)
                 } else if category == .game {
@@ -103,10 +103,12 @@ struct AddLogSheet: View {
                                    selection: $finishDate,
                                    in: startDate...Date.now,
                                    displayedComponents: [.date])
-                        HStack{
-                            Text("Rating")
-                            Spacer()
-                            RatingPicker(rating: $rating)
+                        if category != .series {
+                            HStack{
+                                Text("Rating")
+                                Spacer()
+                                RatingPicker(rating: $rating)
+                            }
                         }
                     } else if status == .inProgress || status == .dropped {
                         DatePicker("Start date",
@@ -131,23 +133,31 @@ struct AddLogSheet: View {
                 }
             }
             Button("Log It"){
-                switch(category){
-                case .movie:
-                    logService.addMovieLog(title: title, director: director, writer: writer, runningTime: runningTime, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, recommendedBy: recommendedBy, notes: notes, user: currentUser)
-                    dismiss()
-                case .series:
-                    logService.addSeriesLog()
-                case .music:
-                    logService.addMusicLog(title: title, artist: artist, releaseType: releaseType, satus: status)
-                case .book:
-                    logService.addBookLog()
-                case .game:
-                    logService.addGameLog()
-                }
+                addLog()
             }
             .buttonSizing(.flexible)
             .buttonStyle(.glassProminent)
             .padding()
+        }
+    }
+    
+    func addLog(){
+        switch(category){
+        case .movie:
+            logService.addMovieLog(title: title, director: director, writer: writer, runningTime: runningTime, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            dismiss()
+        case .series:
+            logService.addSeriesLog(title: title, creator: creator, studio: studio, seasons: seasons, runningTime: runningTime, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            dismiss()
+        case .music:
+            logService.addMusicLog(title: title, artist: artist, album: album, releaseType: releaseType, tracklist: tracklist, status: status, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            dismiss()
+        case .book:
+            logService.addBookLog(title: title, author: author, isbn: isbn, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            dismiss()
+        case .game:
+            logService.addGameLog(title: title, creator: creator, gameStudio: studio, platform: platform, runs: runs, achievements: achievements, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            dismiss()
         }
     }
 }

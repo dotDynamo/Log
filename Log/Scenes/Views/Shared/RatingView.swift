@@ -80,7 +80,7 @@ struct RatingView: View {
 #Preview {
     RatingView(rating: 0, style: .round)
     RatingView(rating: 4, size: .medium, style: .round)
-    RatingView(rating: 5.6, size: .large, style: .round)
+    RatingView(rating: 5.1723231, size: .large, style: .round)
     RatingView(rating: 7.5)
     RatingView(rating: 9.4, size: .medium)
     RatingView(rating: 10, size: .large)

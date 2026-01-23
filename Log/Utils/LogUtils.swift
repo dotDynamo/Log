@@ -12,15 +12,21 @@ struct LogUtils{
     static func ratingToText(rating: Double?, style: RatingStyle) -> String{
         switch(style){
         case .round:
+            if rating == nil {
+                return "-"
+            }
             if rating == 10{
                 return "10"
             }
-            return "\(rating, default: "-")"
+            return "\(round(rating! * 10)/10)"
         case .capsule:
+            if rating == nil {
+                return "- /10"
+            }
             if rating == 10{
                 return "10/10"
             }
-            return "\(rating, default: "- ")/10"
+            return "\(round(rating! * 10)/10)/10"
         }
     }
     
