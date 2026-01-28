@@ -31,6 +31,9 @@ struct LogList: View {
                     }
                 }
             }
+            .sheet(item: $deletingLog, content: { log in
+                Text("this is de delete Log")
+            })
             .confirmationDialog(
                 "You sure you want to delete \(deletingLog?.title, default: "this item")?",
                 isPresented: $showDeleteConfirmation,

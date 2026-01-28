@@ -14,9 +14,7 @@ struct SeriesCardSection: View {
             if log.series!.studio != nil {
                 Text(log.series!.studio!)
             }
-            if log.releaseDate != nil {
-                Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
-            }
+            Text(TimeUtils.getFromDate(log.releaseDate, get: .dateTime.year())).foregroundStyle(.gray)
             if log.series!.seasons.count == 1{
                 Text(String(log.series!.seasons.count)+" season").font(.caption)
             } else {

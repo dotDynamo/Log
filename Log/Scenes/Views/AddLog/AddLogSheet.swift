@@ -17,6 +17,7 @@ struct AddLogSheet: View {
     @State var title: String = ""
     @State var releaseDate: Date = Date.now
     @State var status: Status = .inQueue
+    @State var sameDate: Bool = true
     @State var startDate: Date = Date.now
     @State var finishDate: Date = Date.now
     @State var rating: Double? = nil
@@ -43,6 +44,18 @@ struct AddLogSheet: View {
     
     @State var achievements: [Achievement] = []
     @State var runs: [Run] = []
+    
+    
+    @State var titleValidation: ValidationResult = .empty
+    let titleValidator = NonEmptyValidator(message: "Title must be provided")
+    
+    @State var directorValidation: ValidationResult = .empty
+    @State var writerValidation: ValidationResult = .empty
+    @State var runningTimeValidation: ValidationResult = .empty
+    
+    let directorValidator = NonEmptyValidator(message: "Director name must be provided")
+    let writerValidator = NonEmptyValidator(message: "Director name must be provided")
+    let runingTimeValidator = NonEmptyValidator(message: "Director name must be provided")
     
     var body: some View {
         NavigationStack{
@@ -95,14 +108,22 @@ struct AddLogSheet: View {
 
                 Section("Extra info"){
                     if status == .completed{
-                        DatePicker("Start date",
-                                   selection: $startDate,
-                                   in: releaseDate...Date.now,
-                                   displayedComponents: [.date])
-                        DatePicker("Finish date",
-                                   selection: $finishDate,
-                                   in: startDate...Date.now,
-                                   displayedComponents: [.date])
+                        Toggle("Same date?", isOn: $sameDate)
+                        if sameDate{
+                            DatePicker("Completed date",
+                                       selection: $startDate,
+                                       in: releaseDate...Date.now,
+                                       displayedComponents: [.date])
+                        } else {
+                            DatePicker("Start date",
+                                       selection: $startDate,
+                                       in: releaseDate...Date.now,
+                                       displayedComponents: [.date])
+                            DatePicker("Finish date",
+                                       selection: $finishDate,
+                                       in: startDate...Date.now,
+                                       displayedComponents: [.date])
+                        }
                         if category != .series {
                             HStack{
                                 Text("Rating")
@@ -144,19 +165,19 @@ struct AddLogSheet: View {
     func addLog(){
         switch(category){
         case .movie:
-            logService.addMovieLog(title: title, director: director, writer: writer, runningTime: runningTime, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            logService.addMovieLog(title: title, director: director, writer: writer, runningTime: runningTime, status: status, releaseDate: releaseDate, sameDate: sameDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
             dismiss()
         case .series:
-            logService.addSeriesLog(title: title, creator: creator, studio: studio, seasons: seasons, runningTime: runningTime, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            logService.addSeriesLog(title: title, creator: creator, studio: studio, seasons: seasons, runningTime: runningTime, status: status, releaseDate: releaseDate, sameDate: sameDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
             dismiss()
         case .music:
-            logService.addMusicLog(title: title, artist: artist, album: album, releaseType: releaseType, tracklist: tracklist, status: status, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            logService.addMusicLog(title: title, artist: artist, album: album, releaseType: releaseType, tracklist: tracklist, status: status, releaseDate: releaseDate, sameDate: sameDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
             dismiss()
         case .book:
-            logService.addBookLog(title: title, author: author, isbn: isbn, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            logService.addBookLog(title: title, author: author, isbn: isbn, status: status, releaseDate: releaseDate, sameDate: sameDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
             dismiss()
         case .game:
-            logService.addGameLog(title: title, creator: creator, gameStudio: studio, platform: platform, runs: runs, achievements: achievements, status: status, releaseDate: releaseDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
+            logService.addGameLog(title: title, creator: creator, gameStudio: studio, platform: platform, runs: runs, achievements: achievements, status: status, releaseDate: releaseDate, sameDate: sameDate, startDate: startDate, finishDate: finishDate, rating: rating, recommendedBy: recommendedBy, notes: notes, user: currentUser)
             dismiss()
         }
     }

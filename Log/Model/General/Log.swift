@@ -34,7 +34,8 @@ class Log{
     @Attribute(.unique) var id: UUID = UUID()
     var category: LogCategory
     var title: String
-    var releaseDate: Date?
+    var releaseDate: Date
+    var sameDate: Bool
     var startDate: Date?
     var finishDate: Date?
     var rating: Double?
@@ -50,10 +51,11 @@ class Log{
     @Relationship(deleteRule: .cascade) var book: BookLog?
     @Relationship(deleteRule: .cascade) var game: GameLog?
     
-    init(category: LogCategory,title: String, releaseDate: Date? = nil, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status = Status.inQueue, user: User) {
+    init(category: LogCategory, title: String, releaseDate: Date, sameDate: Bool, startDate: Date? = nil, finishDate: Date? = nil, rating: Double? = nil, recommendedBy: String? = nil, notes: String? = nil, status: Status, user: User) {
         self.category = category
         self.title = title
         self.releaseDate = releaseDate
+        self.sameDate = sameDate
         self.startDate = startDate
         self.finishDate = finishDate
         self.rating = rating

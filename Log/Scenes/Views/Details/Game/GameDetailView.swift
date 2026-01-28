@@ -15,11 +15,9 @@ struct GameDetailView: View {
             Text(log.game!.creator!)
         }
         Text(log.game!.platform)
-        if log.releaseDate != nil {
-            Divider()
-            Text("Release date:").font(.headline).foregroundStyle(.gray)
-            Text(log.releaseDate!, format: .dateTime.year().month().day())
-        }
+        Divider()
+        Text("Release date:").font(.headline).foregroundStyle(.gray)
+        Text(log.releaseDate, format: .dateTime.year().month().day())
         if log.game!.achievements.count != 0 {
             Divider()
             AchievementView(achievements: log.game!.achievements)
