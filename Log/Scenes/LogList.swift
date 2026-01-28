@@ -11,6 +11,7 @@ import SwiftData
 struct LogList: View {
     @Query(sort: \Log.title) private var logs: [Log]
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
     
     let logService: LogService
     
@@ -32,24 +33,29 @@ struct LogList: View {
                 }
             }
             .sheet(item: $deletingLog, content: { log in
-                Text("this is de delete Log")
-            })
-            .confirmationDialog(
-                "You sure you want to delete \(deletingLog?.title, default: "this item")?",
-                isPresented: $showDeleteConfirmation,
-                titleVisibility: .visible,
-                presenting: deletingLog,
-            ) { log in
-                Button("Delete", role: .destructive) {
-                    withAnimation {
-                        logService.deleteLog(log)
-                        deletingLog = nil
+                VStack{
+                    Spacer()
+                    Text("Are you sure you want to delete \(log.title)'s log?")
+                        .presentationDetents([.height(120)])
+                        .bold()
+                    Spacer()
+                    Button(action: deleteLog ) {
+                        Label("Delete", systemImage: "trash")
                     }
+                    .buttonStyle(.borderedProminent)
+                    .buttonSizing(.flexible)
+                    .font(.title2)
+                    .tint(.red)
+                    .padding()
                 }
-            }
+            })
             .navigationDestination(for: Log.self){ log in
                 LogDetailView(log: log)
             }
         }
+    }
+    
+    func deleteLog() {
+        logService.deleteLog(deletingLog!)
     }
 }
