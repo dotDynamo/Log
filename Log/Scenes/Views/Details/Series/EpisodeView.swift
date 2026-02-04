@@ -11,7 +11,7 @@ struct EpisodeView: View {
     let episode: Episode
     var body: some View {
         HStack{
-            Text(episode.name).foregroundStyle(episode.watched ? .gray : .primary)
+            Text(episode.name).foregroundStyle(episode.watched ? .primary : Color.gray)
             Spacer()
             Text(episode.rating != nil ? "\(episode.rating!)" : " - " )
         }

@@ -10,17 +10,24 @@ import SwiftUI
 struct SeasonView: View {
     let season: Season
     let number: Int
+    
+    @State var collapse: Bool = true
     var body: some View {
         HStack{
             if season.name != ""{
                 Text(season.name)
             }else {
-                Text("Season \(number)")
+                Label("Season \(number)", systemImage: collapse ? "chevron.right" : "chevron.down")
+                    .onTapGesture {
+                        collapse.toggle()
+                    }
             }
             RatingView(rating: season.rating, size: .small, style: .capsule)
         }
-        ForEach(season.episodes){ episode in
-            EpisodeView(episode: episode)
+        if !collapse{
+            ForEach(season.episodes){ episode in
+                EpisodeView(episode: episode)
+            }
         }
     }
     

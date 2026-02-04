@@ -19,9 +19,6 @@ struct CommonCardSection: View {
         }
         .onAppear(){
             statusText = LogUtils.statusToText(log: log)
-            if log.category == .series{
-                log.rating = LogUtils.getSeriesRating(log.series!)
-            }
         }
     }
 }
