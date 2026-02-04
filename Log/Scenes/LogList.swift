@@ -35,9 +35,11 @@ struct LogList: View {
             .sheet(item: $deletingLog, content: { log in
                 VStack{
                     Spacer()
-                    Text("Are you sure you want to delete \(log.title)'s log?")
-                        .presentationDetents([.height(120)])
+                    Text("Are you sure you want to delete \n\(log.title)'s log?")
+                        .presentationDetents([.height(175)])
+                        .multilineTextAlignment(.center)
                         .bold()
+                        .padding()
                     Spacer()
                     Button(action: deleteLog ) {
                         Label("Delete", systemImage: "trash")
