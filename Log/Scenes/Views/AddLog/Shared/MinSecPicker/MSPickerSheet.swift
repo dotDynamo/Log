@@ -22,7 +22,7 @@ struct MSPickerSheet: View {
                 Text(":")
                 
                 Picker("", selection: $second) {
-                    ForEach(0..<60, id: \.self) { Text("\($0)").font(.largeTitle) }
+                    ForEach(0..<60, id: \.self) { Text(String(format: "%02d", $0)).font(.largeTitle) }
                 }
                 .pickerStyle(.wheel)
             }

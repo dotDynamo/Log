@@ -15,7 +15,7 @@ struct MinSecPicker: View {
     @Binding var duration: Int
     
     var body: some View {
-        Text(String(format: "%02d:%02d", minute, second))
+        Text(String(format: "%d:%02d", minute, second))
             .frame(width: 50)
             .padding(8)
             .onTapGesture { isPresented.toggle()  }
