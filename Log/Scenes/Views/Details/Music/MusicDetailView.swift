@@ -12,11 +12,14 @@ struct MusicDetailView: View {
     var body: some View {
         switch(log.music!.releaseType){
         case .single, .EP:
+            Text("Artist").font(.headline).foregroundStyle(.gray)
             Text(log.music!.artist)
             if log.music!.album != nil {
+                Text("Album").font(.headline).foregroundStyle(.gray)
                 Text(log.music!.album!)
             }
         case .album:
+            Text("Artist").font(.headline).foregroundStyle(.gray)
             Text(log.music!.artist)
         }
         
