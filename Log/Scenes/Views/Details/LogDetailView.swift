@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LogDetailView: View {
-    let log: Log
+    @State var log: Log
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -52,7 +52,9 @@ struct LogDetailView: View {
         .padding()
         .navigationTitle("Log")
         .toolbar(){
-            Button(action: stub){
+            NavigationLink {
+                LogEditView(log: $log)
+            } label: {
                 Label("Edit", systemImage: "square.and.pencil").labelStyle(.iconOnly)
             }
         }
