@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct GameEditView: View {
+    @Binding var data: Log
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
-}
-
-#Preview {
-    GameEditView()
 }

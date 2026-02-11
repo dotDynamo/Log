@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct MusicEditVIew: View {
+struct MusicEditView: View {
+    
+    @Binding var data: Log
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(data.music!.artist)
+        
     }
-}
-
-#Preview {
-    MusicEditVIew()
 }
