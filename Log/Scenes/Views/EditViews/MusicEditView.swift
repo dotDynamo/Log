@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MusicEditView: View {
     
-    @Binding var data: Log
+    @Binding var data: MusicLog
     
     var body: some View {
-        Text(data.music!.artist)
+        TextField("Artist", text: $data.artist)
         
     }
 }
