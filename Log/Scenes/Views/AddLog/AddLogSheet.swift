@@ -97,14 +97,7 @@ struct AddLogSheet: View {
                     AddAchievementsSection(achievements: $achievements)
                 }
 
-                Section("Status"){
-                    Picker("Status", selection: $status){
-                        Text(LogUtils.addStatusToText(status: .inQueue, category: category)).tag(Status.inQueue)
-                        Text(LogUtils.addStatusToText(status: .inProgress, category: category)).tag(Status.inProgress)
-                        Text("Completed").tag(Status.completed)
-                        Text("Dropped").tag(Status.dropped)
-                    }.pickerStyle(.segmented)
-                }
+                StatusPicker(status: $status, category: $category)
 
                 Section("Extra info"){
                     if status == .completed{
