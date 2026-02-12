@@ -60,7 +60,7 @@ struct AddLogSheet: View {
     var body: some View {
         NavigationStack{
             Picker("Category", selection: $category) {
-                Image(systemName: "film.fill").tag(LogCategory.movie)
+                Image(systemName: "popcorn.fill").tag(LogCategory.movie)
                 Image(systemName: "tv.fill").tag(LogCategory.series)
                 Image(systemName: "music.note").tag(LogCategory.music)
                 Image(systemName: "book.fill").tag(LogCategory.book)
