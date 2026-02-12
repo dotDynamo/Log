@@ -13,6 +13,16 @@ struct MusicEditView: View {
     
     var body: some View {
         TextField("Artist", text: $data.artist)
-        
+        if data.releaseType == .single{
+            TextField("Album", text: Binding(
+                get: { data.album! },
+                set: { data.album = $0 }
+            ))
+        }
+        Picker("ReleaseType", selection: $data.releaseType){
+            Text("Single").tag(ReleaseType.single)
+            Text("Album").tag(ReleaseType.album)
+            Text("EP").tag(ReleaseType.EP)
+        }
     }
 }

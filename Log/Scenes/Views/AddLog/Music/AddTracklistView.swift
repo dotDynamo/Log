@@ -9,13 +9,12 @@ import SwiftUI
 
 struct AddTracklistView: View {
     @Binding var songs: [Song]
-    @State var songDuration: Int = 0
     var body: some View {
         Section("Tracks") {
             ForEach($songs) { $song in
                 HStack {
                     TextField("Song Title", text: $song.name)
-                    MinSecPicker(duration: $songDuration)
+                    MinSecPicker(duration: $song.duration)
                 }
             }
             .onDelete { indexSet in
