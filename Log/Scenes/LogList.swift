@@ -59,5 +59,6 @@ struct LogList: View {
     
     func deleteLog() {
         logService.deleteLog(deletingLog!)
+        showDeleteConfirmation = false
     }
 }
